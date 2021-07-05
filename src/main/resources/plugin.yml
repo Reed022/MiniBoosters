@@ -1,0 +1,10 @@
+name: ReedsPlugin
+version: ${project.version}
+main: me.reed.reedsplugin.Main
+api-version: 1.16
+authors: [ Reed22 ]
+description: A collection of the results of Reed screwing around with code, 90% of the time unsuccessfully.
+commands:
+  doubleexp:
+    description: Activates or deactivates double exp!
+    usage: /<command>
