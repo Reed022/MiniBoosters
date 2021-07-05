@@ -3,7 +3,7 @@ A collection of the results of Reed screwing around with code, 90% of the time u
 
 # Features So Far:
 - Physical features:
-  - Experience Doubler
+  - Experience Doubler:
     When activated with the command below, the experience doubler does just that: doubles experience picked up from the ground.
 - Commands:
   - /doubleexp:
