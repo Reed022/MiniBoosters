@@ -12,3 +12,4 @@ A collection of the results of Reed screwing around with code, 90% of the time u
 # Planned Features:
 - A command to toggle the experience tracker (chat message showing how much experience each orb you pick up is worth).
 - Arguments for the /doubleexp command to change how much the experience is multiplied by (with limits).
+- Switch the /doubleexp command to a command like /booster with extra arguments to specify what is getting multiplied (i.e. ores, exp, etc.)
