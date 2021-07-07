@@ -1,6 +1,7 @@
 package me.reed.reedsplugin.events;
 
 import me.reed.reedsplugin.commands.DoubleExp;
+import me.reed.reedsplugin.commands.ExpTracking;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -15,13 +16,16 @@ public class ExpMultiplier implements Listener {
     public void onExperienceDrop(EntityTargetEvent event) {
         Entity e = event.getEntity();
 
-        if (e.getType() == EntityType.EXPERIENCE_ORB && DoubleExp.getDoubleExpStatus()) {
+        if (e.getType() == EntityType.EXPERIENCE_ORB) {
             ExperienceOrb exp = (ExperienceOrb) e;
-            exp.setExperience(exp.getExperience() * 2);
-            DoubleExp.getSender().sendMessage(ChatColor.AQUA + "Experience of Target Orb: " + ChatColor.GREEN + exp.getExperience());
-        } else if (e.getType() == EntityType.EXPERIENCE_ORB && !DoubleExp.getDoubleExpStatus()) {
-            ExperienceOrb exp = (ExperienceOrb) e;
-            DoubleExp.getSender().sendMessage(ChatColor.AQUA + "Experience of Target Orb: " + ChatColor.GREEN + exp.getExperience());
+            // Exp doubling controller
+            if (DoubleExp.getDoubleExpStatus()) {
+                exp.setExperience(exp.getExperience() * 2);
+            }
+            // Exp pickup tracking controller
+            if (ExpTracking.getExpTrackingStatus()) {
+                DoubleExp.getSender().sendMessage(ChatColor.AQUA + "Experience of Target Orb: " + ChatColor.GREEN + exp.getExperience());
+            }
         }
 
     }
