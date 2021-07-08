@@ -10,12 +10,13 @@ import org.bukkit.entity.Player;
 public class ExpTracking implements CommandExecutor {
     private final Main main;
     private static boolean expTracking = false;
+    private static Player player;
 
     public ExpTracking(Main main) {this.main = main;}
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Player player;
+
         if (sender instanceof Player)  {
             player = (Player) sender;
             if (player.isOp() || player.hasPermission("exptracking")) {
@@ -40,4 +41,7 @@ public class ExpTracking implements CommandExecutor {
     }
 
     public static boolean getExpTrackingStatus() {return expTracking;}
+
+    public static Player getSender() {return player;}
 }
+

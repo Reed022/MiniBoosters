@@ -24,7 +24,7 @@ public class ExpMultiplier implements Listener {
             }
             // Exp pickup tracking controller
             if (ExpTracking.getExpTrackingStatus()) {
-                DoubleExp.getSender().sendMessage(ChatColor.AQUA + "Experience of Target Orb: " + ChatColor.GREEN + exp.getExperience());
+                ExpTracking.getSender().sendMessage(ChatColor.AQUA + "Experience of Target Orb: " + ChatColor.GREEN + exp.getExperience());
             }
         }
 
