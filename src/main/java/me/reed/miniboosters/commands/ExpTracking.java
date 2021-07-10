@@ -20,12 +20,12 @@ public class ExpTracking implements CommandExecutor {
             if (player.isOp() || player.hasPermission("exptracking")) {
                 String statusMessage;
                 ChatColor statusColor;
-                if (main.isToggled(player.getUniqueId())) { // set false
-                    main.setToggled(player.getUniqueId(), false);
+                if (main.getExpToggled(player.getUniqueId())) { // set false
+                    main.setExpToggled(player.getUniqueId(), false);
                     statusMessage = "inactive";
                     statusColor = ChatColor.RED;
                 } else { // set true
-                    main.setToggled(player.getUniqueId(), true);
+                    main.setExpToggled(player.getUniqueId(), true);
                     statusMessage = "active";
                     statusColor = ChatColor.GREEN;
                 }

@@ -9,8 +9,6 @@ import org.bukkit.entity.Player;
 
 public class DoubleExp implements CommandExecutor {
     private final MiniBoosters main;
-    private static boolean doubleExpStatus = false;
-    private static Player player;
 
     public DoubleExp(MiniBoosters main) {
         this.main = main;
@@ -20,19 +18,19 @@ public class DoubleExp implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (sender instanceof Player) {
-            player = (Player) sender;
+            Player player = (Player) sender;
 
             if (player.isOp() || player.hasPermission("doubleexp")) {
-                // Sets variables to appropriate values based on doubleExpStatus and outputs messages based on permissions
-                doubleExpStatus = !doubleExpStatus;
                 String statusMessage;
                 ChatColor statusColor;
-                if (doubleExpStatus) {
-                    statusColor = ChatColor.GREEN;
-                    statusMessage = "active";
-                } else {
+                if (main.getDoubleToggled()) {
+                    main.setDoubleToggled(false);
                     statusColor = ChatColor.RED;
                     statusMessage = "inactive";
+                } else {
+                    main.setDoubleToggled(true);
+                    statusColor = ChatColor.GREEN;
+                    statusMessage = "active";
                 }
                 player.sendMessage(ChatColor.DARK_AQUA + "Double exp now " + statusColor + statusMessage + ChatColor.DARK_AQUA + "!");
             } else {
@@ -43,8 +41,4 @@ public class DoubleExp implements CommandExecutor {
         }
         return true;
     }
-
-    public static boolean getDoubleExpStatus() { return doubleExpStatus;}
-
-    public static Player getSender() { return player;}
 }
