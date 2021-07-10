@@ -1,5 +1,5 @@
 # MiniBoosters
-A collection of the results of Reed screwing around with code, 90% of the time unsuccessfully.
+This is a plugin that allows you to boost certain things in your world, such as the value of exp!
 
 ### Features So Far:
 - Physical features:
