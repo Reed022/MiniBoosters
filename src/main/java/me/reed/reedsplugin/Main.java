@@ -10,7 +10,7 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        getServer().getPluginManager().registerEvents(new ExpMultiplier(), this);
+        getServer().getPluginManager().registerEvents(new ExpMultiplier(this), this);
         this.getCommand("doubleexp").setExecutor(new DoubleExp(this));
         this.getCommand("exptracker").setExecutor(new ExpTracking(this));
 
