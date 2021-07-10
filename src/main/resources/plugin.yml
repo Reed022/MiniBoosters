@@ -1,6 +1,6 @@
-name: ReedsPlugin
+name: MiniBoosters
 version: ${project.version}
-main: me.reed.reedsplugin.Main
+main: me.reed.reedsplugin.MiniBoosters
 api-version: 1.16
 authors: [ Reed22 ]
 description: A collection of the results of Reed screwing around with code, 90% of the time unsuccessfully.

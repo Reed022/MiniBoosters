@@ -1,6 +1,6 @@
-package me.reed.reedsplugin.commands;
+package me.reed.miniboosters.commands;
 
-import me.reed.reedsplugin.Main;
+import me.reed.miniboosters.MiniBoosters;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -8,11 +8,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class DoubleExp implements CommandExecutor {
-    private final Main main;
+    private final MiniBoosters main;
     private static boolean doubleExpStatus = false;
     private static Player player;
 
-    public DoubleExp(Main main) {
+    public DoubleExp(MiniBoosters main) {
         this.main = main;
     }
 

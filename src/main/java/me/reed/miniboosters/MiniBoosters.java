@@ -1,11 +1,11 @@
-package me.reed.reedsplugin;
+package me.reed.miniboosters;
 
-import me.reed.reedsplugin.commands.DoubleExp;
-import me.reed.reedsplugin.commands.ExpTracking;
-import me.reed.reedsplugin.events.ExpMultiplier;
+import me.reed.miniboosters.commands.DoubleExp;
+import me.reed.miniboosters.commands.ExpTracking;
+import me.reed.miniboosters.events.ExpMultiplier;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class Main extends JavaPlugin {
+public final class MiniBoosters extends JavaPlugin {
 
     @Override
     public void onEnable() {

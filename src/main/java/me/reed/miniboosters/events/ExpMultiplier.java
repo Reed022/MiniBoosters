@@ -1,8 +1,8 @@
-package me.reed.reedsplugin.events;
+package me.reed.miniboosters.events;
 
-import me.reed.reedsplugin.Main;
-import me.reed.reedsplugin.commands.DoubleExp;
-import me.reed.reedsplugin.commands.ExpTracking;
+import me.reed.miniboosters.MiniBoosters;
+import me.reed.miniboosters.commands.DoubleExp;
+import me.reed.miniboosters.commands.ExpTracking;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -15,8 +15,8 @@ import org.bukkit.metadata.FixedMetadataValue;
 
 public class ExpMultiplier implements Listener {
 
-    private Main plugin;
-    public ExpMultiplier(Main plugin) {
+    private MiniBoosters plugin;
+    public ExpMultiplier(MiniBoosters plugin) {
         this.plugin = plugin;
     }
 
@@ -32,7 +32,7 @@ public class ExpMultiplier implements Listener {
                 exp.setMetadata("XPDoubled", new FixedMetadataValue(plugin, true));
             }
             // Exp pickup tracking controller
-            if (ExpTracking.getExpTrackingStatus()) {
+            if (ExpTracking.getExpTrackingStatus() && event.getTarget() == ExpTracking.getSender()) {
                 ExpTracking.getSender().sendMessage(ChatColor.AQUA + "Experience of Target Orb: " + ChatColor.GREEN + exp.getExperience());
             }
         }

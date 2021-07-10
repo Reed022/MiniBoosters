@@ -1,6 +1,6 @@
-package me.reed.reedsplugin.commands;
+package me.reed.miniboosters.commands;
 
-import me.reed.reedsplugin.Main;
+import me.reed.miniboosters.MiniBoosters;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -8,11 +8,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class ExpTracking implements CommandExecutor {
-    private final Main main;
-    private static boolean expTracking = false;
+    private final MiniBoosters main;
+    private static boolean expTracking;
     private static Player player;
 
-    public ExpTracking(Main main) {this.main = main;}
+    public ExpTracking(MiniBoosters main) {this.main = main;}
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
