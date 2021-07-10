@@ -15,7 +15,7 @@ import org.bukkit.metadata.FixedMetadataValue;
 
 public class ExpMultiplier implements Listener {
 
-    private MiniBoosters plugin;
+    private final MiniBoosters plugin;
     public ExpMultiplier(MiniBoosters plugin) {
         this.plugin = plugin;
     }
@@ -32,8 +32,8 @@ public class ExpMultiplier implements Listener {
                 exp.setMetadata("XPDoubled", new FixedMetadataValue(plugin, true));
             }
             // Exp pickup tracking controller
-            if (ExpTracking.getExpTrackingStatus() && event.getTarget() == ExpTracking.getSender()) {
-                ExpTracking.getSender().sendMessage(ChatColor.AQUA + "Experience of Target Orb: " + ChatColor.GREEN + exp.getExperience());
+            if (plugin.isToggled(event.getTarget().getUniqueId())) {
+                event.getTarget().sendMessage(ChatColor.AQUA + "Experience of Target Orb: " + ChatColor.GREEN + exp.getExperience());
             }
         }
 
