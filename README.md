@@ -1,4 +1,4 @@
-# ReedsPlugin
+# MiniBoosters
 A collection of the results of Reed screwing around with code, 90% of the time unsuccessfully.
 
 ### Features So Far:
