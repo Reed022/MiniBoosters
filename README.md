@@ -3,15 +3,14 @@ This is a plugin that allows you to boost certain things in your world, such as 
 
 ### Features So Far:
 - Physical features:
-  - Experience Doubler:
-    When activated with the command below, the experience doubler does just that: doubles experience picked up from the ground.
+  - Experience multiplier:
+    When activated through the main command, the experience multiplier does just that: multiplies experience picked up from the ground based on the provided multiplier value.
 - Commands:
-  - /doubleexp:
-    Toggles the experience doubler which doubles all experience picked up from the ground, such as from mob kills or breaking ores.
+  - /booster:
+    The plugin's main command to set multipliers for various game functionalities (currently only exp) as well as listing current boosters and listing all available boosters.
   - /exptracker:
     Toggles the experience tracker which displays in chat the value of an experience orb when it targets you.
 
 ### Planned Features:
 - Arguments for the /doubleexp command to change how much the experience is multiplied by (with limits).
-- Switch the /doubleexp command to a command like /booster with extra arguments to specify what is getting multiplied (i.e. ores, exp, etc.) and add functionality for multiplying those drops.
-- A command to get the info on current boosters.
+- Add functionality for specifying what should be boosted (i.e. ores, mob drops, etc.)
