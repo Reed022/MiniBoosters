@@ -14,6 +14,8 @@ import org.bukkit.metadata.FixedMetadataValue;
 public class Experience implements Listener {
 
     private final MiniBoosters plugin;
+    private static int expMulti;
+
     public Experience(MiniBoosters plugin) {
         this.plugin = plugin;
     }
@@ -25,15 +27,23 @@ public class Experience implements Listener {
         if (e.getType() == EntityType.EXPERIENCE_ORB && event.getTarget() instanceof Player) {
             ExperienceOrb exp = (ExperienceOrb) e;
             // Exp doubling controller
-            if (plugin.getDoubleToggled() && !exp.hasMetadata("XPDoubled")) {
-                exp.setExperience(exp.getExperience() * 2);
+            if (plugin.getExpMultiToggled() && !exp.hasMetadata("XPDoubled")) {
+                exp.setExperience(exp.getExperience() * expMulti);
                 exp.setMetadata("XPDoubled", new FixedMetadataValue(plugin, true));
             }
             // Exp pickup tracking controller
-            if (plugin.getExpToggled(event.getTarget().getUniqueId())) {
+            if (plugin.getExpTrackerToggled(event.getTarget().getUniqueId())) {
                 event.getTarget().sendMessage(ChatColor.AQUA + "Experience of Target Orb: " + ChatColor.GREEN + exp.getExperience());
             }
         }
 
+    }
+
+    public int getExpMulti() {
+        return expMulti;
+    }
+
+    public static void setExpMulti(int d) {
+        expMulti = d;
     }
 }

@@ -1,7 +1,7 @@
 package me.reed.miniboosters;
 
-import me.reed.miniboosters.commands.DoubleExp;
-import me.reed.miniboosters.commands.ExpTracking;
+import me.reed.miniboosters.commands.Booster;
+import me.reed.miniboosters.commands.ExpTracker;
 import me.reed.miniboosters.events.Experience;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -12,14 +12,14 @@ import java.util.UUID;
 public final class MiniBoosters extends JavaPlugin {
 
     private Map<UUID, Boolean> toggles = new HashMap<>();
-    private boolean doubleExpStatus;
+    private boolean expMultiToggle;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(new Experience(this), this);
-        this.getCommand("doubleexp").setExecutor(new DoubleExp(this));
-        this.getCommand("exptracker").setExecutor(new ExpTracking(this));
+        this.getCommand("booster").setExecutor(new Booster(this));
+        this.getCommand("exptracker").setExecutor(new ExpTracker(this));
 
     }
 
@@ -29,20 +29,32 @@ public final class MiniBoosters extends JavaPlugin {
     }
 
     // For exp doubling
-    public boolean getDoubleToggled() {
-        return doubleExpStatus;
+    public boolean getExpMultiToggled() {
+        return expMultiToggle;
     }
 
-    public void setDoubleToggled(Boolean toggled) {
-        doubleExpStatus = toggled;
+    public void setExpMultiToggled(Boolean toggled) {
+        expMultiToggle = toggled;
     }
 
     // For exp tracking
-    public boolean getExpToggled(UUID uuid) {
+    public boolean getExpTrackerToggled(UUID uuid) {
         return toggles.getOrDefault(uuid, false);
     }
 
-    public void setExpToggled(UUID uuid, Boolean toggled) {
+    public void setExpTrackerToggled(UUID uuid, Boolean toggled) {
         toggles.put(uuid, toggled);
+    }
+
+    public String getActiveBoosters() {
+        StringBuilder activeBoosters = new StringBuilder();
+        if (expMultiToggle) {
+            activeBoosters.append("exp");
+            // when there are more booster types, add if within here to append a comma
+        }
+        if (!expMultiToggle) {
+            activeBoosters.append("none");
+        }
+        return activeBoosters.toString();
     }
 }

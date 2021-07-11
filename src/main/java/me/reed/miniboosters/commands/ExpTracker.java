@@ -7,25 +7,25 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class ExpTracking implements CommandExecutor {
+public class ExpTracker implements CommandExecutor {
     private final MiniBoosters main;
 
-    public ExpTracking(MiniBoosters main) {this.main = main;}
+    public ExpTracker(MiniBoosters main) {this.main = main;}
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (sender instanceof Player)  {
             Player player = (Player) sender;
-            if (player.isOp() || player.hasPermission("exptracking")) {
+            if (player.isOp() || player.hasPermission("miniboosters.exptracking")) {
                 String statusMessage;
                 ChatColor statusColor;
-                if (main.getExpToggled(player.getUniqueId())) { // set false
-                    main.setExpToggled(player.getUniqueId(), false);
+                if (main.getExpTrackerToggled(player.getUniqueId())) { // set false
+                    main.setExpTrackerToggled(player.getUniqueId(), false);
                     statusMessage = "inactive";
                     statusColor = ChatColor.RED;
                 } else { // set true
-                    main.setExpToggled(player.getUniqueId(), true);
+                    main.setExpTrackerToggled(player.getUniqueId(), true);
                     statusMessage = "active";
                     statusColor = ChatColor.GREEN;
                 }
