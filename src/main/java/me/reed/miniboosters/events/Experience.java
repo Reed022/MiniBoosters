@@ -39,7 +39,7 @@ public class Experience implements Listener {
 
     }
 
-    public int getExpMulti() {
+    public static int getExpMulti() {
         return expMulti;
     }
 
