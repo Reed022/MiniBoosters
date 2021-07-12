@@ -26,12 +26,12 @@ public class Experience implements Listener {
         if (e.getType() == EntityType.EXPERIENCE_ORB && event.getTarget() instanceof Player) {
             ExperienceOrb exp = (ExperienceOrb) e;
             // Exp doubling controller
-            if (plugin.getExpMultiToggled() && !exp.hasMetadata("XPDoubled")) {
-                exp.setExperience(exp.getExperience() * plugin.getExpMulti());
+            if (plugin.isExpMultiEnabled() && !exp.hasMetadata("XPDoubled")) {
+                exp.setExperience(exp.getExperience() * plugin.getExpMultiValue());
                 exp.setMetadata("XPDoubled", new FixedMetadataValue(plugin, true));
             }
             // Exp pickup tracking controller
-            if (plugin.getExpTrackerToggled(event.getTarget().getUniqueId())) {
+            if (plugin.playerExpAlertEnabled(event.getTarget().getUniqueId())) {
                 event.getTarget().sendMessage(ChatColor.AQUA + "Experience of Target Orb: " + ChatColor.GREEN + exp.getExperience());
             }
         }

@@ -12,9 +12,9 @@ import java.util.UUID;
 public final class MiniBoosters extends JavaPlugin {
 
     private Map<UUID, Boolean> toggles = new HashMap<>();
+    private final int defaultMultiValue = 2;
     private boolean expMultiToggle;
-    private int expMulti;
-    private final int defaultMulti = 2;
+    private int expMultiValue;
 
     @Override
     public void onEnable() {
@@ -31,20 +31,20 @@ public final class MiniBoosters extends JavaPlugin {
     }
 
     // For exp doubling
-    public boolean getExpMultiToggled() {
+    public boolean isExpMultiEnabled() {
         return expMultiToggle;
     }
 
-    public void setExpMultiToggled(Boolean toggled) {
+    public void setExpMultiEnabled(Boolean toggled) {
         expMultiToggle = toggled;
     }
 
     // For exp tracking
-    public boolean getExpTrackerToggled(UUID uuid) {
+    public boolean playerExpAlertEnabled(UUID uuid) {
         return toggles.getOrDefault(uuid, false);
     }
 
-    public void setExpTrackerToggled(UUID uuid, Boolean toggled) {
+    public void setPlayerExpAlertEnabled(UUID uuid, Boolean toggled) {
         toggles.put(uuid, toggled);
     }
 
@@ -60,15 +60,15 @@ public final class MiniBoosters extends JavaPlugin {
         return activeBoosters.toString();
     }
 
-    public int getDefaultMulti() {
-        return defaultMulti;
+    public int getDefaultMultiValue() {
+        return defaultMultiValue;
     }
 
-    public int getExpMulti() {
-        return expMulti;
+    public int getExpMultiValue() {
+        return expMultiValue;
     }
 
-    public void setExpMulti(int d) {
-        expMulti = d;
+    public void setExpMultiValue(int d) {
+        expMultiValue = d;
     }
 }

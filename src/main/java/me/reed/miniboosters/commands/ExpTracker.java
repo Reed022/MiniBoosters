@@ -20,12 +20,12 @@ public class ExpTracker implements CommandExecutor {
             if (player.isOp() || player.hasPermission("miniboosters.exptracking")) {
                 String statusMessage;
                 ChatColor statusColor;
-                if (plugin.getExpTrackerToggled(player.getUniqueId())) { // set false
-                    plugin.setExpTrackerToggled(player.getUniqueId(), false);
+                if (plugin.playerExpAlertEnabled(player.getUniqueId())) { // set false
+                    plugin.setPlayerExpAlertEnabled(player.getUniqueId(), false);
                     statusMessage = "inactive";
                     statusColor = ChatColor.RED;
                 } else { // set true
-                    plugin.setExpTrackerToggled(player.getUniqueId(), true);
+                    plugin.setPlayerExpAlertEnabled(player.getUniqueId(), true);
                     statusMessage = "active";
                     statusColor = ChatColor.GREEN;
                 }
