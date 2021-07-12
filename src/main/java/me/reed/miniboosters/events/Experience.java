@@ -14,7 +14,6 @@ import org.bukkit.metadata.FixedMetadataValue;
 public class Experience implements Listener {
 
     private final MiniBoosters plugin;
-    private static int expMulti;
 
     public Experience(MiniBoosters plugin) {
         this.plugin = plugin;
@@ -28,7 +27,7 @@ public class Experience implements Listener {
             ExperienceOrb exp = (ExperienceOrb) e;
             // Exp doubling controller
             if (plugin.getExpMultiToggled() && !exp.hasMetadata("XPDoubled")) {
-                exp.setExperience(exp.getExperience() * expMulti);
+                exp.setExperience(exp.getExperience() * plugin.getExpMulti());
                 exp.setMetadata("XPDoubled", new FixedMetadataValue(plugin, true));
             }
             // Exp pickup tracking controller
@@ -37,13 +36,5 @@ public class Experience implements Listener {
             }
         }
 
-    }
-
-    public static int getExpMulti() {
-        return expMulti;
-    }
-
-    public static void setExpMulti(int d) {
-        expMulti = d;
     }
 }

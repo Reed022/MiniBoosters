@@ -3,7 +3,7 @@ version: ${project.version}
 main: me.reed.miniboosters.MiniBoosters
 api-version: 1.16
 authors: [ Reed22 ]
-description: A collection of the results of Reed screwing around with code, 90% of the time unsuccessfully.
+description: This is a plugin that allows you to boost certain things in your world, such as the value of exp!
 commands:
   booster:
     description: Activates or deactivates double exp!

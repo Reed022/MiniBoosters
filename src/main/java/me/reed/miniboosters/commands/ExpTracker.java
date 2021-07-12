@@ -8,9 +8,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class ExpTracker implements CommandExecutor {
-    private final MiniBoosters main;
+    private final MiniBoosters plugin;
 
-    public ExpTracker(MiniBoosters main) {this.main = main;}
+    public ExpTracker(MiniBoosters plugin) {this.plugin = plugin;}
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -20,12 +20,12 @@ public class ExpTracker implements CommandExecutor {
             if (player.isOp() || player.hasPermission("miniboosters.exptracking")) {
                 String statusMessage;
                 ChatColor statusColor;
-                if (main.getExpTrackerToggled(player.getUniqueId())) { // set false
-                    main.setExpTrackerToggled(player.getUniqueId(), false);
+                if (plugin.getExpTrackerToggled(player.getUniqueId())) { // set false
+                    plugin.setExpTrackerToggled(player.getUniqueId(), false);
                     statusMessage = "inactive";
                     statusColor = ChatColor.RED;
                 } else { // set true
-                    main.setExpTrackerToggled(player.getUniqueId(), true);
+                    plugin.setExpTrackerToggled(player.getUniqueId(), true);
                     statusMessage = "active";
                     statusColor = ChatColor.GREEN;
                 }
@@ -34,7 +34,7 @@ public class ExpTracker implements CommandExecutor {
                 player.sendMessage(ChatColor.RED + "You do not have the required permission to use this command!");
             }
         } else {
-            main.getLogger().info("You must be in game to activate exp pickup tracking!");
+            plugin.getLogger().info("You must be in game to activate exp pickup tracking!");
         }
         return true;
     }

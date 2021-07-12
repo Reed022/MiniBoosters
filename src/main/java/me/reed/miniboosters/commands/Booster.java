@@ -1,7 +1,6 @@
 package me.reed.miniboosters.commands;
 
 import me.reed.miniboosters.MiniBoosters;
-import me.reed.miniboosters.events.Experience;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -9,11 +8,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Booster implements CommandExecutor {
-    private final MiniBoosters main;
-    private final int defaultMulti = 2;
+    private final MiniBoosters plugin;
 
-    public Booster(MiniBoosters main) {
-        this.main = main;
+    public Booster(MiniBoosters plugin) {
+        this.plugin = plugin;
     }
 
     @Override
@@ -43,15 +41,15 @@ public class Booster implements CommandExecutor {
                                     // Checking type
                                     switch (args[1].toLowerCase()) {
                                         case "exp":
-                                            if (Experience.getExpMulti() == defaultMulti && main.getExpMultiToggled()) {
-                                                player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier is " + ChatColor.AQUA + "already active " + ChatColor.DARK_AQUA + "at " + ChatColor.AQUA + "default " + defaultMulti + "x" + ChatColor.DARK_AQUA + "!");
-                                            } else if (Experience.getExpMulti() != defaultMulti && main.getExpMultiToggled()) {
-                                                Experience.setExpMulti(defaultMulti);
-                                                player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier has been " + ChatColor.YELLOW + "changed " + ChatColor.DARK_AQUA + "to " + ChatColor.AQUA + "default " + defaultMulti + "x" + ChatColor.DARK_AQUA + "!");
-                                            } else if (!main.getExpMultiToggled()) {
-                                                main.setExpMultiToggled(true);
-                                                Experience.setExpMulti(defaultMulti);
-                                                player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier is now " + ChatColor.GREEN + "active " + ChatColor.DARK_AQUA + "at " + ChatColor.AQUA + "default " + defaultMulti + "x" + ChatColor.DARK_AQUA + "!");
+                                            if (plugin.getExpMulti() == plugin.getDefaultMulti() && plugin.getExpMultiToggled()) {
+                                                player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier is " + ChatColor.AQUA + "already active " + ChatColor.DARK_AQUA + "at " + ChatColor.AQUA + "default " + plugin.getDefaultMulti() + "x" + ChatColor.DARK_AQUA + "!");
+                                            } else if (plugin.getExpMulti() != plugin.getDefaultMulti() && plugin.getExpMultiToggled()) {
+                                                plugin.setExpMulti(plugin.getDefaultMulti());
+                                                player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier has been " + ChatColor.YELLOW + "changed " + ChatColor.DARK_AQUA + "to " + ChatColor.AQUA + "default " + plugin.getDefaultMulti() + "x" + ChatColor.DARK_AQUA + "!");
+                                            } else if (!plugin.getExpMultiToggled()) {
+                                                plugin.setExpMultiToggled(true);
+                                                plugin.setExpMulti(plugin.getDefaultMulti());
+                                                player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier is now " + ChatColor.GREEN + "active " + ChatColor.DARK_AQUA + "at " + ChatColor.AQUA + "default " + plugin.getDefaultMulti() + "x" + ChatColor.DARK_AQUA + "!");
                                             }
                                             break;
                                         // future cases for future booster types
@@ -67,15 +65,15 @@ public class Booster implements CommandExecutor {
                                         case "exp":
                                             // tests if args[2] is parsable
                                             if (argIsInt(args[2], player)) {
-                                                if (Integer.parseInt(args[2]) == Experience.getExpMulti() && main.getExpMultiToggled()) {
-                                                    player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier is " + ChatColor.AQUA + "already active " + ChatColor.DARK_AQUA + "at " + ChatColor.AQUA + Experience.getExpMulti() + "x" + ChatColor.DARK_AQUA + "!");
-                                                } else if (Integer.parseInt(args[2]) != Experience.getExpMulti() && main.getExpMultiToggled()) {
-                                                    Experience.setExpMulti(Integer.parseInt(args[2]));
-                                                    player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier has been " + ChatColor.YELLOW + "changed " + ChatColor.DARK_AQUA + "to " + ChatColor.AQUA + Experience.getExpMulti() + "x" + ChatColor.DARK_AQUA + "!");
-                                                } else if (!main.getExpMultiToggled()) {
-                                                    main.setExpMultiToggled(true);
-                                                    Experience.setExpMulti(Integer.parseInt(args[2]));
-                                                    player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier is now " + ChatColor.GREEN + "active " + ChatColor.DARK_AQUA + "at " + ChatColor.AQUA + Experience.getExpMulti() + "x" + ChatColor.DARK_AQUA + "!");
+                                                if (Integer.parseInt(args[2]) == plugin.getExpMulti() && plugin.getExpMultiToggled()) {
+                                                    player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier is " + ChatColor.AQUA + "already active " + ChatColor.DARK_AQUA + "at " + ChatColor.AQUA + plugin.getExpMulti() + "x" + ChatColor.DARK_AQUA + "!");
+                                                } else if (Integer.parseInt(args[2]) != plugin.getExpMulti() && plugin.getExpMultiToggled()) {
+                                                    plugin.setExpMulti(Integer.parseInt(args[2]));
+                                                    player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier has been " + ChatColor.YELLOW + "changed " + ChatColor.DARK_AQUA + "to " + ChatColor.AQUA + plugin.getExpMulti() + "x" + ChatColor.DARK_AQUA + "!");
+                                                } else if (!plugin.getExpMultiToggled()) {
+                                                    plugin.setExpMultiToggled(true);
+                                                    plugin.setExpMulti(Integer.parseInt(args[2]));
+                                                    player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier is now " + ChatColor.GREEN + "active " + ChatColor.DARK_AQUA + "at " + ChatColor.AQUA + plugin.getExpMulti() + "x" + ChatColor.DARK_AQUA + "!");
                                                 }
                                             }
                                             break;
@@ -102,10 +100,10 @@ public class Booster implements CommandExecutor {
                                 case 2:
                                     switch (args[1].toLowerCase()) {
                                         case "exp":
-                                            if (!main.getExpMultiToggled()) {
+                                            if (!plugin.getExpMultiToggled()) {
                                                 player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier is " + ChatColor.AQUA + "already inactive" + ChatColor.DARK_AQUA + "!");
                                             } else {
-                                                main.setExpMultiToggled(false);
+                                                plugin.setExpMultiToggled(false);
                                                 player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier is now " + ChatColor.RED + "inactive" + ChatColor.DARK_AQUA + "!");
                                             }
                                             break;
@@ -137,7 +135,7 @@ public class Booster implements CommandExecutor {
                                 player.sendMessage(ChatColor.GRAY + "(Usage: /booster info)");
                             } else {
                                 player.sendMessage(ChatColor.DARK_AQUA + "-" + ChatColor.AQUA + "=" + ChatColor.DARK_AQUA + "- " + ChatColor.WHITE + "Active Boosters: " + ChatColor.DARK_AQUA + "-" + ChatColor.AQUA + "=" + ChatColor.DARK_AQUA + "-");
-                                player.sendMessage(ChatColor.AQUA + main.getActiveBoosters());
+                                player.sendMessage(ChatColor.AQUA + plugin.getActiveBoosters());
                             }
                             break;
                         /*
@@ -153,7 +151,7 @@ public class Booster implements CommandExecutor {
                 player.sendMessage(ChatColor.RED + "You do not have the required permission to use this command!");
             }
         } else {
-            main.getLogger().info("You must be in game to activate double exp!");
+            plugin.getLogger().info("You must be in game to activate double exp!");
         }
         return true;
     }

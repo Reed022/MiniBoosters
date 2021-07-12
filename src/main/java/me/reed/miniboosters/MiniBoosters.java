@@ -13,6 +13,8 @@ public final class MiniBoosters extends JavaPlugin {
 
     private Map<UUID, Boolean> toggles = new HashMap<>();
     private boolean expMultiToggle;
+    private int expMulti;
+    private final int defaultMulti = 2;
 
     @Override
     public void onEnable() {
@@ -56,5 +58,17 @@ public final class MiniBoosters extends JavaPlugin {
             activeBoosters.append("none");
         }
         return activeBoosters.toString();
+    }
+
+    public int getDefaultMulti() {
+        return defaultMulti;
+    }
+
+    public int getExpMulti() {
+        return expMulti;
+    }
+
+    public void setExpMulti(int d) {
+        expMulti = d;
     }
 }
