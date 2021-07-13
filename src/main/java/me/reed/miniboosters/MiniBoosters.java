@@ -1,7 +1,7 @@
 package me.reed.miniboosters;
 
 import me.reed.miniboosters.commands.Booster;
-import me.reed.miniboosters.commands.ExpTracker;
+import me.reed.miniboosters.commands.ExpAlert;
 import me.reed.miniboosters.events.Experience;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,13 +21,26 @@ public final class MiniBoosters extends JavaPlugin {
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(new Experience(this), this);
         this.getCommand("booster").setExecutor(new Booster(this));
-        this.getCommand("exptracker").setExecutor(new ExpTracker(this));
+        this.getCommand("expalert").setExecutor(new ExpAlert(this));
 
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+    }
+
+    // For exp alert
+    public boolean playerExpAlertEnabled(UUID uuid) {
+        return toggles.getOrDefault(uuid, false);
+    }
+
+    public void setPlayerExpAlertEnabled(UUID uuid, Boolean toggled) {
+        toggles.put(uuid, toggled);
+    }
+
+    public void removePlayerExpAlertEntry(UUID uuid) {
+        toggles.remove(uuid);
     }
 
     // For exp doubling
@@ -37,15 +50,6 @@ public final class MiniBoosters extends JavaPlugin {
 
     public void setExpMultiEnabled(Boolean toggled) {
         expMultiToggle = toggled;
-    }
-
-    // For exp tracking
-    public boolean playerExpAlertEnabled(UUID uuid) {
-        return toggles.getOrDefault(uuid, false);
-    }
-
-    public void setPlayerExpAlertEnabled(UUID uuid, Boolean toggled) {
-        toggles.put(uuid, toggled);
     }
 
     public String getActiveBoosters() {

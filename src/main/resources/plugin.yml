@@ -8,6 +8,6 @@ commands:
   booster:
     description: Activates or deactivates double exp!
     usage: /<command>
-  exptracker:
+  expalert:
     description: Activates or deactivates the exp pickup tracker!
     usage: /<command>
