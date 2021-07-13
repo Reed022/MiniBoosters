@@ -46,7 +46,7 @@ public class Booster implements CommandExecutor {
                                             } else if (plugin.getExpMultiValue() != plugin.getDefaultMultiValue() && plugin.isExpMultiEnabled()) {
                                                 plugin.setExpMultiValue(plugin.getDefaultMultiValue());
                                                 player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier has been " + ChatColor.YELLOW + "changed " + ChatColor.DARK_AQUA + "to " + ChatColor.AQUA + "default " + plugin.getDefaultMultiValue() + "x" + ChatColor.DARK_AQUA + "!");
-                                            } else if (!plugin.isExpMultiEnabled()) {
+                                            } else {
                                                 plugin.setExpMultiEnabled(true);
                                                 plugin.setExpMultiValue(plugin.getDefaultMultiValue());
                                                 player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier is now " + ChatColor.GREEN + "active " + ChatColor.DARK_AQUA + "at " + ChatColor.AQUA + "default " + plugin.getDefaultMultiValue() + "x" + ChatColor.DARK_AQUA + "!");
@@ -70,7 +70,7 @@ public class Booster implements CommandExecutor {
                                                 } else if (Integer.parseInt(args[2]) != plugin.getExpMultiValue() && plugin.isExpMultiEnabled()) {
                                                     plugin.setExpMultiValue(Integer.parseInt(args[2]));
                                                     player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier has been " + ChatColor.YELLOW + "changed " + ChatColor.DARK_AQUA + "to " + ChatColor.AQUA + plugin.getExpMultiValue() + "x" + ChatColor.DARK_AQUA + "!");
-                                                } else if (!plugin.isExpMultiEnabled()) {
+                                                } else {
                                                     plugin.setExpMultiEnabled(true);
                                                     plugin.setExpMultiValue(Integer.parseInt(args[2]));
                                                     player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier is now " + ChatColor.GREEN + "active " + ChatColor.DARK_AQUA + "at " + ChatColor.AQUA + plugin.getExpMultiValue() + "x" + ChatColor.DARK_AQUA + "!");

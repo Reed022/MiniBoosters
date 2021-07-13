@@ -3,6 +3,7 @@ package me.reed.miniboosters;
 import me.reed.miniboosters.commands.Booster;
 import me.reed.miniboosters.commands.ExpAlert;
 import me.reed.miniboosters.events.Experience;
+import me.reed.miniboosters.events.PlayerQuit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
@@ -20,6 +21,7 @@ public final class MiniBoosters extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(new Experience(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerQuit(this), this);
         this.getCommand("booster").setExecutor(new Booster(this));
         this.getCommand("expalert").setExecutor(new ExpAlert(this));
 
