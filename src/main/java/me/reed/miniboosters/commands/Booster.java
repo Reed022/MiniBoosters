@@ -1,6 +1,7 @@
 package me.reed.miniboosters.commands;
 
 import me.reed.miniboosters.MiniBoosters;
+import me.reed.miniboosters.utilities.MessageUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -20,11 +21,11 @@ public class Booster implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            if (player.isOp() || player.hasPermission("miniboosters.booster")) {
+            if (player.isOp() || player.hasPermission("miniboosters.command.booster")) {
 
                 if (args.length == 0) {
-                    player.sendMessage(ChatColor.RED + "Incorrect usage of this command! Please provide correct arguments!");
-                    player.sendMessage(ChatColor.GRAY + "(Usage: /booster <action>)" + ChatColor.BOLD + " Actions: " + ChatColor.RESET + ChatColor.GRAY + "set, remove, list, info");
+                    player.sendMessage(MessageUtils.errorMsgIncorrectArgs);
+                    player.sendMessage(MessageUtils.incorrectUsageMsg("action", 0, "actions"));
                 }
 
                 if (args.length > 0) {
@@ -34,8 +35,8 @@ public class Booster implements CommandExecutor {
                             // Checking args length -> 1 = too short, 2 = default booster, 3 = booster with specified multiValue
                             switch (args.length) {
                                 case 1:
-                                    player.sendMessage(ChatColor.RED + "Incorrect usage of this command! Please provide correct arguments!");
-                                    player.sendMessage(ChatColor.GRAY + "(Usage: /booster set <type> <multiValue>) | Use " + ChatColor.UNDERLINE + "/booster list" + ChatColor.RESET + ChatColor.GRAY + " for the list of booster types.");
+                                    player.sendMessage(MessageUtils.errorMsgIncorrectArgs);
+                                    player.sendMessage(MessageUtils.incorrectUsageMsg("set", 2, "list"));
                                     break;
                                 case 2:
                                     // Checking type
@@ -43,6 +44,7 @@ public class Booster implements CommandExecutor {
                                         case "exp":
                                             if (plugin.getExpMultiValue() == plugin.getDefaultMultiValue() && plugin.isExpMultiEnabled()) {
                                                 player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier is " + ChatColor.AQUA + "already active " + ChatColor.DARK_AQUA + "at " + ChatColor.AQUA + "default " + plugin.getDefaultMultiValue() + "x" + ChatColor.DARK_AQUA + "!");
+
                                             } else if (plugin.getExpMultiValue() != plugin.getDefaultMultiValue() && plugin.isExpMultiEnabled()) {
                                                 plugin.setExpMultiValue(plugin.getDefaultMultiValue());
                                                 player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier has been " + ChatColor.YELLOW + "changed " + ChatColor.DARK_AQUA + "to " + ChatColor.AQUA + "default " + plugin.getDefaultMultiValue() + "x" + ChatColor.DARK_AQUA + "!");
@@ -55,8 +57,8 @@ public class Booster implements CommandExecutor {
                                         // future cases for future booster types
                                         // when type is non-existent
                                         default:
-                                            player.sendMessage(ChatColor.RED + "Incorrect usage of this command! Please provide correct arguments!");
-                                            player.sendMessage(ChatColor.GRAY + "(Usage: /booster set <type>) | Use " + ChatColor.UNDERLINE + "/booster list" + ChatColor.RESET + ChatColor.GRAY + " for the list of booster types.");
+                                            player.sendMessage(MessageUtils.errorMsgIncorrectArgs);
+                                            player.sendMessage(MessageUtils.incorrectUsageMsg("set", 1, "list"));
                                     }
                                     break;
                                 case 3:
@@ -80,22 +82,22 @@ public class Booster implements CommandExecutor {
                                         // future cases for future booster types
                                         // when type is non-existent
                                         default:
-                                            player.sendMessage(ChatColor.RED + "Incorrect usage of this command! Please provide correct arguments!");
-                                            player.sendMessage(ChatColor.GRAY + "(Usage: /booster set <type> <multiValue>) | Use " + ChatColor.UNDERLINE + "/booster list" + ChatColor.RESET + ChatColor.GRAY + " for the list of booster types.");
+                                            player.sendMessage(MessageUtils.errorMsgIncorrectArgs);
+                                            player.sendMessage(MessageUtils.incorrectUsageMsg("set", 2, "list"));
                                     }
                                     break;
                                     // end of case 3
                                 default:
-                                    player.sendMessage(ChatColor.RED + "Incorrect usage of this command! Too many arguments!");
-                                    player.sendMessage(ChatColor.GRAY + "(Usage: /booster set <type> <multiValue>)");
+                                    player.sendMessage(MessageUtils.errorMsgTooManyArgs);
+                                    player.sendMessage(MessageUtils.incorrectUsageMsg("set", 2, null));
                             }
                             break;
                         // REMOVE
                         case "remove":
                             switch (args.length) {
                                 case 1:
-                                    player.sendMessage(ChatColor.RED + "Incorrect usage of this command! Please provide correct arguments!");
-                                    player.sendMessage(ChatColor.GRAY + "(Usage: /booster remove <type>) | Use " + ChatColor.UNDERLINE + "/booster list" + ChatColor.RESET + ChatColor.GRAY + " for the list of booster types.");
+                                    player.sendMessage(MessageUtils.errorMsgIncorrectArgs);
+                                    player.sendMessage(MessageUtils.incorrectUsageMsg("remove", 1, "list"));
                                     break;
                                 case 2:
                                     switch (args[1].toLowerCase()) {
@@ -110,28 +112,28 @@ public class Booster implements CommandExecutor {
                                         // future cases for future booster types
                                         // when type is non-existent
                                         default:
-                                            player.sendMessage(ChatColor.RED + "Incorrect usage of this command! Please provide correct arguments!");
-                                            player.sendMessage(ChatColor.GRAY + "(Usage: /booster remove <type>) | Use " + ChatColor.UNDERLINE + "/booster list" + ChatColor.RESET + ChatColor.GRAY + " for the list of booster types.");
+                                            player.sendMessage(MessageUtils.errorMsgIncorrectArgs);
+                                            player.sendMessage(MessageUtils.incorrectUsageMsg("remove", 1, "list"));
                                     }
                                     break;
                                 default:
-                                    player.sendMessage(ChatColor.RED + "Incorrect usage of this command! Too many arguments!");
-                                    player.sendMessage(ChatColor.GRAY + "(Usage: /booster remove <type>)" + ChatColor.BOLD + " Types: " + ChatColor.RESET + ChatColor.GRAY + "exp");
+                                    player.sendMessage(MessageUtils.errorMsgTooManyArgs);
+                                    player.sendMessage(MessageUtils.incorrectUsageMsg("remove", 1, "list"));
                             }
                             break;
                         // LIST
                         case "list":
                             if (args.length > 1) {
-                                player.sendMessage(ChatColor.RED + "Incorrect usage of this command! Too many arguments!");
+                                player.sendMessage(MessageUtils.errorMsgTooManyArgs);
                                 player.sendMessage(ChatColor.GRAY + "(Usage: /booster list)");
                             } else {
-                                player.sendMessage(ChatColor.DARK_AQUA + "Available boosters: " + ChatColor.AQUA + "exp");
+                                player.sendMessage(ChatColor.DARK_AQUA + "Available boosters: " + MessageUtils.typeList);
                             }
                             break;
                         // INFO
                         case "info":
                             if (args.length > 1) {
-                                player.sendMessage(ChatColor.RED + "Incorrect usage of this command! Too many arguments!");
+                                player.sendMessage(MessageUtils.errorMsgTooManyArgs);
                                 player.sendMessage(ChatColor.GRAY + "(Usage: /booster info)");
                             } else {
                                 player.sendMessage(ChatColor.DARK_AQUA + "-" + ChatColor.AQUA + "=" + ChatColor.DARK_AQUA + "- " + ChatColor.WHITE + "Active Boosters: " + ChatColor.DARK_AQUA + "-" + ChatColor.AQUA + "=" + ChatColor.DARK_AQUA + "-");
@@ -143,12 +145,12 @@ public class Booster implements CommandExecutor {
                             break;
                             */
                         default:
-                            player.sendMessage(ChatColor.RED + "Incorrect usage of this command! Please provide correct arguments!");
-                            player.sendMessage(ChatColor.GRAY + "(Usage: /booster <action>)" + ChatColor.BOLD + " Actions: " + ChatColor.RESET + ChatColor.GRAY + "set, remove, list, info");
+                            player.sendMessage(MessageUtils.errorMsgIncorrectArgs);
+                            player.sendMessage(MessageUtils.incorrectUsageMsg("action", 0, "actions"));
                     }
                 }
             } else {
-                player.sendMessage(ChatColor.RED + "You do not have the required permission to use this command!");
+                player.sendMessage(ChatColor.RED + "You don't have permission to use this command! " + ChatColor.DARK_RED + "miniboosters.command.booster");
             }
         } else {
             plugin.getLogger().info("You must be in game to activate double exp!");
@@ -160,8 +162,8 @@ public class Booster implements CommandExecutor {
         try {
             Integer.parseInt(s);
         } catch (NumberFormatException nfe) {
-            p.sendMessage(ChatColor.RED + "Incorrect usage of this command! Please provide correct arguments!");
-            p.sendMessage(ChatColor.GRAY + "(Usage: /booster <set> <type> <multiValue>) " + ChatColor.UNDERLINE + "<multiValue> must be an integer!");
+            p.sendMessage(MessageUtils.errorMsgIncorrectArgs);
+            p.sendMessage(MessageUtils.incorrectUsageMsg("set", 2, null) + ChatColor.UNDERLINE + "<multiValue> must be an integer!");
             return false;
         }
         return true;

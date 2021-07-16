@@ -1,5 +1,5 @@
 # MiniBoosters
-This is a plugin that allows you to boost certain things in your world, such as the value of exp!
+MiniBoosters is a simple plugin to set multipliers, or "boosters", for things in your server, such as experience!
 
 ### Features So Far:
 - Physical features:

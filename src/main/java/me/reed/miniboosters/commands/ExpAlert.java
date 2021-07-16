@@ -17,7 +17,7 @@ public class ExpAlert implements CommandExecutor {
 
         if (sender instanceof Player)  {
             Player player = (Player) sender;
-            if (player.isOp() || player.hasPermission("miniboosters.expalerts")) {
+            if (player.isOp() || player.hasPermission("miniboosters.command.expalerts")) {
                 String statusMessage;
                 ChatColor statusColor;
                 if (plugin.playerExpAlertEnabled(player.getUniqueId())) { // set false
@@ -31,7 +31,7 @@ public class ExpAlert implements CommandExecutor {
                 }
                 player.sendMessage(ChatColor.DARK_AQUA + "Exp pickup alerts now " + statusColor + statusMessage + "!");
             } else {
-                player.sendMessage(ChatColor.RED + "You do not have the required permission to use this command!");
+                player.sendMessage(ChatColor.RED + "You don't have permission to use this command! " + ChatColor.DARK_RED + "miniboosters.command.expalerts");
             }
         } else {
             plugin.getLogger().info("You must be in game to activate exp pickup alerts!");
