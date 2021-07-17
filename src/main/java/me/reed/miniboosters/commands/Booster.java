@@ -25,7 +25,7 @@ public class Booster implements CommandExecutor {
 
                 if (args.length == 0) {
                     player.sendMessage(MessageUtils.errorMsgIncorrectArgs);
-                    player.sendMessage(MessageUtils.incorrectUsageMsg("action", 0, "actions"));
+                    player.sendMessage(MessageUtils.usageErrMsgAction);
                 }
 
                 if (args.length > 0) {
@@ -36,29 +36,29 @@ public class Booster implements CommandExecutor {
                             switch (args.length) {
                                 case 1:
                                     player.sendMessage(MessageUtils.errorMsgIncorrectArgs);
-                                    player.sendMessage(MessageUtils.incorrectUsageMsg("set", 2, "list"));
+                                    player.sendMessage(MessageUtils.usageErrMsgSet);
                                     break;
                                 case 2:
                                     // Checking type
                                     switch (args[1].toLowerCase()) {
                                         case "exp":
                                             if (plugin.getExpMultiValue() == plugin.getDefaultMultiValue() && plugin.isExpMultiEnabled()) {
-                                                player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier is " + ChatColor.AQUA + "already active " + ChatColor.DARK_AQUA + "at " + ChatColor.AQUA + "default " + plugin.getDefaultMultiValue() + "x" + ChatColor.DARK_AQUA + "!");
+                                                player.sendMessage(MessageUtils.setMultiMsgAlreadyActive("Exp", plugin.getDefaultMultiValue(), plugin.getExpMultiValue(), true));
 
                                             } else if (plugin.getExpMultiValue() != plugin.getDefaultMultiValue() && plugin.isExpMultiEnabled()) {
                                                 plugin.setExpMultiValue(plugin.getDefaultMultiValue());
-                                                player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier has been " + ChatColor.YELLOW + "changed " + ChatColor.DARK_AQUA + "to " + ChatColor.AQUA + "default " + plugin.getDefaultMultiValue() + "x" + ChatColor.DARK_AQUA + "!");
+                                                player.sendMessage(MessageUtils.setMultiMsgChanged("Exp", plugin.getDefaultMultiValue(), plugin.getExpMultiValue(), true));
                                             } else {
                                                 plugin.setExpMultiEnabled(true);
                                                 plugin.setExpMultiValue(plugin.getDefaultMultiValue());
-                                                player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier is now " + ChatColor.GREEN + "active " + ChatColor.DARK_AQUA + "at " + ChatColor.AQUA + "default " + plugin.getDefaultMultiValue() + "x" + ChatColor.DARK_AQUA + "!");
+                                                player.sendMessage(MessageUtils.setMultiMsgToggleActive("Exp", plugin.getDefaultMultiValue(), plugin.getExpMultiValue(), true));
                                             }
                                             break;
                                         // future cases for future booster types
                                         // when type is non-existent
                                         default:
                                             player.sendMessage(MessageUtils.errorMsgIncorrectArgs);
-                                            player.sendMessage(MessageUtils.incorrectUsageMsg("set", 1, "list"));
+                                            player.sendMessage(MessageUtils.usageErrMsgSet);
                                     }
                                     break;
                                 case 3:
@@ -66,16 +66,16 @@ public class Booster implements CommandExecutor {
                                     switch (args[1].toLowerCase()) {
                                         case "exp":
                                             // tests if args[2] is parsable
-                                            if (isArgInt(args[2], player)) {
+                                            if (isMultiValueInt(args[2], player)) {
                                                 if (Integer.parseInt(args[2]) == plugin.getExpMultiValue() && plugin.isExpMultiEnabled()) {
-                                                    player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier is " + ChatColor.AQUA + "already active " + ChatColor.DARK_AQUA + "at " + ChatColor.AQUA + plugin.getExpMultiValue() + "x" + ChatColor.DARK_AQUA + "!");
+                                                    player.sendMessage(MessageUtils.setMultiMsgAlreadyActive("Exp", plugin.getDefaultMultiValue(), plugin.getExpMultiValue(), false));
                                                 } else if (Integer.parseInt(args[2]) != plugin.getExpMultiValue() && plugin.isExpMultiEnabled()) {
                                                     plugin.setExpMultiValue(Integer.parseInt(args[2]));
-                                                    player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier has been " + ChatColor.YELLOW + "changed " + ChatColor.DARK_AQUA + "to " + ChatColor.AQUA + plugin.getExpMultiValue() + "x" + ChatColor.DARK_AQUA + "!");
+                                                    player.sendMessage(MessageUtils.setMultiMsgChanged("Exp", plugin.getDefaultMultiValue(), plugin.getExpMultiValue(), false));
                                                 } else {
                                                     plugin.setExpMultiEnabled(true);
                                                     plugin.setExpMultiValue(Integer.parseInt(args[2]));
-                                                    player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier is now " + ChatColor.GREEN + "active " + ChatColor.DARK_AQUA + "at " + ChatColor.AQUA + plugin.getExpMultiValue() + "x" + ChatColor.DARK_AQUA + "!");
+                                                    player.sendMessage(MessageUtils.setMultiMsgToggleActive("Exp", plugin.getDefaultMultiValue(), plugin.getExpMultiValue(), false));
                                                 }
                                             }
                                             break;
@@ -83,13 +83,13 @@ public class Booster implements CommandExecutor {
                                         // when type is non-existent
                                         default:
                                             player.sendMessage(MessageUtils.errorMsgIncorrectArgs);
-                                            player.sendMessage(MessageUtils.incorrectUsageMsg("set", 2, "list"));
+                                            player.sendMessage(MessageUtils.usageErrMsgSet);
                                     }
                                     break;
                                     // end of case 3
                                 default:
                                     player.sendMessage(MessageUtils.errorMsgTooManyArgs);
-                                    player.sendMessage(MessageUtils.incorrectUsageMsg("set", 2, null));
+                                    player.sendMessage(MessageUtils.usageErrMsgSet2);
                             }
                             break;
                         // REMOVE
@@ -97,46 +97,46 @@ public class Booster implements CommandExecutor {
                             switch (args.length) {
                                 case 1:
                                     player.sendMessage(MessageUtils.errorMsgIncorrectArgs);
-                                    player.sendMessage(MessageUtils.incorrectUsageMsg("remove", 1, "list"));
+                                    player.sendMessage(MessageUtils.usageErrMsgRemove);
                                     break;
                                 case 2:
                                     switch (args[1].toLowerCase()) {
                                         case "exp":
                                             if (!plugin.isExpMultiEnabled()) {
-                                                player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier is " + ChatColor.AQUA + "already inactive" + ChatColor.DARK_AQUA + "!");
+                                                player.sendMessage(MessageUtils.removeMultiMsgAlreadyInactive("Exp"));
                                             } else {
                                                 plugin.setExpMultiEnabled(false);
-                                                player.sendMessage(ChatColor.DARK_AQUA + "Exp multiplier is now " + ChatColor.RED + "inactive" + ChatColor.DARK_AQUA + "!");
+                                                player.sendMessage(MessageUtils.removeMultiMsgToggleInactive("Exp"));
                                             }
                                             break;
                                         // future cases for future booster types
                                         // when type is non-existent
                                         default:
                                             player.sendMessage(MessageUtils.errorMsgIncorrectArgs);
-                                            player.sendMessage(MessageUtils.incorrectUsageMsg("remove", 1, "list"));
+                                            player.sendMessage(MessageUtils.usageErrMsgRemove);
                                     }
                                     break;
                                 default:
                                     player.sendMessage(MessageUtils.errorMsgTooManyArgs);
-                                    player.sendMessage(MessageUtils.incorrectUsageMsg("remove", 1, "list"));
+                                    player.sendMessage(MessageUtils.usageErrMsgRemove2);
                             }
                             break;
                         // LIST
                         case "list":
                             if (args.length > 1) {
                                 player.sendMessage(MessageUtils.errorMsgTooManyArgs);
-                                player.sendMessage(ChatColor.GRAY + "(Usage: /booster list)");
+                                player.sendMessage(MessageUtils.usageErrMsgList);
                             } else {
-                                player.sendMessage(ChatColor.DARK_AQUA + "Available boosters: " + MessageUtils.typeList);
+                                player.sendMessage(MessageUtils.availableBoosters);
                             }
                             break;
                         // INFO
                         case "info":
                             if (args.length > 1) {
                                 player.sendMessage(MessageUtils.errorMsgTooManyArgs);
-                                player.sendMessage(ChatColor.GRAY + "(Usage: /booster info)");
+                                player.sendMessage(MessageUtils.usageErrMsgInfo);
                             } else {
-                                player.sendMessage(ChatColor.DARK_AQUA + "-" + ChatColor.AQUA + "=" + ChatColor.DARK_AQUA + "- " + ChatColor.WHITE + "Active Boosters: " + ChatColor.DARK_AQUA + "-" + ChatColor.AQUA + "=" + ChatColor.DARK_AQUA + "-");
+                                player.sendMessage(MessageUtils.messageHeader("Active Boosters:"));
                                 player.sendMessage(ChatColor.AQUA + plugin.getActiveBoosters());
                             }
                             break;
@@ -146,24 +146,24 @@ public class Booster implements CommandExecutor {
                             */
                         default:
                             player.sendMessage(MessageUtils.errorMsgIncorrectArgs);
-                            player.sendMessage(MessageUtils.incorrectUsageMsg("action", 0, "actions"));
+                            player.sendMessage(MessageUtils.usageErrMsgAction);
                     }
                 }
             } else {
-                player.sendMessage(ChatColor.RED + "You don't have permission to use this command! " + ChatColor.DARK_RED + "miniboosters.command.booster");
+                player.sendMessage(MessageUtils.playerMissingPermissionErr("miniboosters.command.booster"));
             }
         } else {
-            plugin.getLogger().info("You must be in game to activate double exp!");
+            plugin.getLogger().info(MessageUtils.consoleCommandErr);
         }
         return true;
     }
 
-    public static boolean isArgInt(String s, Player p) {
+    public static boolean isMultiValueInt(String s, Player p) {
         try {
             Integer.parseInt(s);
         } catch (NumberFormatException nfe) {
             p.sendMessage(MessageUtils.errorMsgIncorrectArgs);
-            p.sendMessage(MessageUtils.incorrectUsageMsg("set", 2, null) + ChatColor.UNDERLINE + "<multiValue> must be an integer!");
+            p.sendMessage(MessageUtils.usageErrMsgSet3);
             return false;
         }
         return true;

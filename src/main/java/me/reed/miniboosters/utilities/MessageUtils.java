@@ -1,158 +1,67 @@
 package me.reed.miniboosters.utilities;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
 import me.reed.miniboosters.MiniBoosters;
 import org.bukkit.ChatColor;
 
 public class MessageUtils {
     private final MiniBoosters plugin = new MiniBoosters();
 
-    public static final String errorMsgIncorrectArgs = ChatColor.RED + "Incorrect usage of this command! Please provide correct arguments!";
-    public static final String errorMsgTooManyArgs = ChatColor.RED + "Incorrect usage of this command! Too many arguments!";
-    public static final String actionList = ChatColor.BOLD + "Actions: " + ChatColor.RESET + ChatColor.GRAY + "set, remove, list, info";
-    public static final String listNotice = ChatColor.GRAY + "Use " + ChatColor.UNDERLINE + "/booster list" + ChatColor.RESET + ChatColor.GRAY + " for the list of booster types";
-    public static final String typeList = ChatColor.AQUA + "exp";
-
-    public static final String alreadyActive = ChatColor.DARK_AQUA + "is " + ChatColor.AQUA + "already active" + ChatColor.DARK_AQUA + " at";
-    public static final String alreadyInactive = ChatColor.DARK_AQUA + "is " + ChatColor.AQUA + "already inactive";
-    public static final String changed = ChatColor.DARK_AQUA + "has been " + ChatColor.YELLOW + "changed" + ChatColor.DARK_AQUA + " to";
-    public static final String toggledActive = ChatColor.DARK_AQUA + "is now " + ChatColor.GREEN + "active" + ChatColor.DARK_AQUA + " at";
-    public static final String toggledInactive = ChatColor.DARK_AQUA + "is now " + ChatColor.RED + "inactive";
-
-    /**
-     * @param usage value determines arg1 of the "(Usage)" portion of the error message
-     * @param extraArgs value determines how many extra args appear in the "usage" line of the error message
-     *                  null = add no other params, 1 = add <type> 2 = add <multiValue>
-     * @param usageContext value determines the context added to the end of the usage line
-     *                     null = blank usage context, "actions" = add action list, "list" = add (/booster list) notice
-     * @return the error message
+    /*
+    Notes:
+    The active boosters message is built in MiniBoosters.java
      */
-    public static String incorrectUsageMsg(@NotNull String usage, @NotNull int extraArgs, @Nullable String usageContext) {
-        StringBuilder errorBuilder = new StringBuilder();
-        String usageHolder;
-        String usageContextHolder;
-        boolean exclamationUse;
 
-        /*
-        FORMAT:
-        (Usage: <usageHolder>) <usageContextHolder><"!" - depending on exclamationUse value>
-        EXAMPLE:
-        (Usage: set <type>) Use /booster list for the list of booster types!
-         */
-        switch (usage) {
-            case "action":
-                usageHolder = "<action>";
-                usageContextHolder = actionList;
-                exclamationUse = false;
-                break;
-            case "set":
-                // set usage args --> (Usage: <usage args>) xxx
-                switch (extraArgs) {
-                    case 1:
-                        usageHolder = "set <type>";
-                        break;
-                    case 2:
-                        usageHolder = "set <type> <multiValue>";
-                        break;
-                    default:
-                        usageHolder = "set";
-                }
-                // set usage context --> (Usage: xxx) <Usage context>
-                if (usageContext.equals("list")) {
-                    usageContextHolder = listNotice;
-                    exclamationUse = true;
-                } else {
-                    usageContextHolder = "";
-                    exclamationUse = false;
-                }
-                break;
-            case "remove":
-                // set usage args --> (Usage: <usage args>) xxx
-                if (extraArgs == 1) {
-                    usageHolder = "remove <type>";
-                } else {
-                    usageHolder = "remove";
-                }
-                // set usage context --> (Usage: xxx) <Usage context>
-                if (usageContext.equals("list")) {
-                    usageContextHolder = listNotice;
-                    exclamationUse = true;
-                } else {
-                    usageContextHolder = "";
-                    exclamationUse = false;
-                }
-                break;
-            case "list":
-                usageHolder = "list";
-                usageContextHolder = "";
-                exclamationUse = false;
-                break;
-            case "info":
-                usageHolder = "info";
-                usageContextHolder = "";
-                exclamationUse = false;
-                break;
-            default:
-                usageHolder = "Unknown usage given.";
-                usageContextHolder = "";
-                exclamationUse = false;
-        }
-        String usageMsg = ChatColor.GRAY + "(Usage: /booster " + usageHolder + ") " + usageContextHolder;
-        errorBuilder.append(usageMsg);
-        if (exclamationUse) {
-            errorBuilder.append("!");
-        }
-        return errorBuilder.toString();
-    }
+    // Error message strings
+    public static final String errorMsgIncorrectArgs = ChatColor.translateAlternateColorCodes('&', "&cIncorrect usage of this command! Please provide correct arguments!");
+    public static final String errorMsgTooManyArgs = ChatColor.translateAlternateColorCodes('&', "&cIncorrect usage of this command! Too many arguments!");
+    public static final String usageErrMsgAction = ChatColor.translateAlternateColorCodes('&', "&7(Usage: /booster <action>) Actions: set, remove, list, info");
+    public static final String usageErrMsgSet = ChatColor.translateAlternateColorCodes('&', "&7(Usage: /booster set <type> <optional: multiValue>) Use &n/booster list &r&7for the list of booster types!");
+    public static final String usageErrMsgSet2 = ChatColor.translateAlternateColorCodes('&', "&7(Usage: /booster set <type> <optional: multiValue>)");
+    public static final String usageErrMsgSet3 = ChatColor.translateAlternateColorCodes('&', "&7(Usage: /booster set <type> <optional: multiValue>) <multiValue> must be an integer!");
+    public static final String usageErrMsgRemove = ChatColor.translateAlternateColorCodes('&', "&7(Usage: /booster remove <type>) Use &n/booster list &r&7for the list of booster types!");
+    public static final String usageErrMsgRemove2 = ChatColor.translateAlternateColorCodes('&', "&7(Usage: /booster remove <type>)");
+    public static final String usageErrMsgList = ChatColor.translateAlternateColorCodes('&', "&7(Usage: /booster list)");
+    public static final String usageErrMsgInfo = ChatColor.translateAlternateColorCodes('&', "&7(Usage: /booster info)");
 
-    /**
-     * @param newStatus determines the contents of the message depending on which status is relevant
-     *                  - alreadyActive, - changed, - toggledActive
-     * @param multiType if the multiplier type exists, it's capitalized and used at beginning of message
-     * @param useDefault if true, the message will specify the multiplier value as default
-     * @return the new status message
-     */
-    public static String setMultiplierMsg(String multiType, String newStatus, boolean useDefault) {
-        String multiTypeHolder;
-        String newStatusHolder;
-        String multiValueHolder;
-
-        if (multiType.equals("exp")) {
-            multiTypeHolder = multiType.substring(0, 1).toUpperCase() + multiType.substring(1);
-            if (useDefault) {
-                // multiValueHolder = ChatColor.AQUA + "default" + plugin.getDefaultMultiValue() + "x";
-                multiValueHolder = "";
-                // ^ v temporary so I don't get an error with initialization
-            } else {
-                // multiValueHolder = ChatColor.AQUA + plugin.getExpMultiValue() + "x";
-                multiValueHolder = "";
-            }
+    // Multiplier status message methods (taking in types, values, and whether or not to include default multiplier value in the message)
+    public static String setMultiMsgToggleActive(String multiType, int defaultMultiValue, int multiValue, boolean useDefault) {
+        if (useDefault) {
+            return ChatColor.translateAlternateColorCodes('&', "&3" + multiType + " multiplier is now &aACTIVE &3at &bdefault " + defaultMultiValue + "x&3!");
         } else {
-            multiTypeHolder = "Unknown multiType given.";
-            multiValueHolder = "Unable to find multiValue (Unknown multiType given).";
+            return ChatColor.translateAlternateColorCodes('&', "&3" + multiType + " multiplier is now &aACTIVE &3at &b" + multiValue + "x&3!");
         }
-        /*
-        FORMAT:
-        <multiTypeHolder> multiplier <newStatusHolder> <multiValueHolder> <"!" - depending on exclamationUse value>
-        EXAMPLE:
-        Exp multiplier is already active at default 2x!
-        */
-        switch (newStatus) {
-            case "alreadyActive":
-                newStatusHolder = alreadyActive;
-                break;
-            case "changed":
-                newStatusHolder = changed;
-                break;
-            case "toggledActive":
-                newStatusHolder = toggledActive;
-                break;
-            default:
-                newStatusHolder = "Unknown status given.";
-
-
-        }
-        return ChatColor.DARK_AQUA + multiTypeHolder + " multiplier" + newStatusHolder + multiValueHolder + ChatColor.DARK_AQUA + "!";
     }
+    public static String removeMultiMsgToggleInactive(String multiType) {
+        return ChatColor.translateAlternateColorCodes('&', "&3" + multiType + " multiplier is now &cINACTIVE&3!");
+    }
+    public static String setMultiMsgChanged(String multiType, int defaultMultiValue, int multiValue, boolean useDefault) {
+        if (useDefault) {
+            return ChatColor.translateAlternateColorCodes('&', "&3" + multiType + " multiplier has been &eCHANGED &3to &bdefault " + defaultMultiValue + "x&3!");
+        } else {
+            return ChatColor.translateAlternateColorCodes('&', "&3" + multiType + " multiplier has been &eCHANGED &3to &b" + multiValue + "x&3!");
+        }
+    }
+    public static String setMultiMsgAlreadyActive(String multiType, int defaultMultiValue, int multiValue, boolean useDefault) {
+        if (useDefault) {
+            return ChatColor.translateAlternateColorCodes('&', "&3" + multiType + " multiplier is &balready active &3at &bdefault " + defaultMultiValue + "x&3!");
+        } else {
+            return ChatColor.translateAlternateColorCodes('&', "&3" + multiType + " multiplier is &balready active &3at &b" + multiValue + "x&3!");
+        }
+    }
+    public static String removeMultiMsgAlreadyInactive(String multiType) {
+        return ChatColor.translateAlternateColorCodes('&', "&3" + multiType + " multiplier is &balready inactive&3!");
+    }
+
+    // General strings
+    public static final String availableBoosters = ChatColor.translateAlternateColorCodes('&', "&3Available boosters: &bexp");
+    public static final String consoleCommandErr = "You must be in-game to use this command!";
+
+    // General string methods (these methods take in values and could change - above general strings will never change)
+    public static String playerMissingPermissionErr(String permissionName) {
+        return ChatColor.translateAlternateColorCodes('&', "&cYou don't have permission to use this command! &4(missing permission &n" + permissionName + "&r&4)");
+    }
+    public static String messageHeader(String headerContents) {
+        return ChatColor.translateAlternateColorCodes('&', "&3-&b=&3- &f" + headerContents + " &3-&b=&3-");
+    }
+
 }

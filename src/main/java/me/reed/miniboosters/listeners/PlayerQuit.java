@@ -1,4 +1,4 @@
-package me.reed.miniboosters.events;
+package me.reed.miniboosters.listeners;
 
 import me.reed.miniboosters.MiniBoosters;
 import org.bukkit.entity.Player;

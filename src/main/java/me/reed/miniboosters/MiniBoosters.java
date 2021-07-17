@@ -2,8 +2,8 @@ package me.reed.miniboosters;
 
 import me.reed.miniboosters.commands.Booster;
 import me.reed.miniboosters.commands.ExpAlert;
-import me.reed.miniboosters.events.Experience;
-import me.reed.miniboosters.events.PlayerQuit;
+import me.reed.miniboosters.listeners.Experience;
+import me.reed.miniboosters.listeners.PlayerQuit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;

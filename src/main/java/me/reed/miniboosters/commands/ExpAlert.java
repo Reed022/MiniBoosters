@@ -1,6 +1,7 @@
 package me.reed.miniboosters.commands;
 
 import me.reed.miniboosters.MiniBoosters;
+import me.reed.miniboosters.utilities.MessageUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -31,10 +32,10 @@ public class ExpAlert implements CommandExecutor {
                 }
                 player.sendMessage(ChatColor.DARK_AQUA + "Exp pickup alerts now " + statusColor + statusMessage + "!");
             } else {
-                player.sendMessage(ChatColor.RED + "You don't have permission to use this command! " + ChatColor.DARK_RED + "miniboosters.command.expalerts");
+                player.sendMessage(MessageUtils.playerMissingPermissionErr("miniboosters.command.expalerts"));
             }
         } else {
-            plugin.getLogger().info("You must be in game to activate exp pickup alerts!");
+            plugin.getLogger().info(MessageUtils.consoleCommandErr);
         }
         return true;
     }
