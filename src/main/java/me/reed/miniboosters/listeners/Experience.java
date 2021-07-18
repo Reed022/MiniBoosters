@@ -1,7 +1,7 @@
 package me.reed.miniboosters.listeners;
 
 import me.reed.miniboosters.MiniBoosters;
-import org.bukkit.ChatColor;
+import me.reed.miniboosters.utilities.MessageUtils;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ExperienceOrb;
@@ -32,7 +32,7 @@ public class Experience implements Listener {
             }
             // Exp pickup tracking controller
             if (plugin.playerExpAlertEnabled(event.getTarget().getUniqueId())) {
-                event.getTarget().sendMessage(ChatColor.AQUA + "Experience of Target Orb: " + ChatColor.GREEN + exp.getExperience());
+                event.getTarget().sendMessage(MessageUtils.expAlertMsg(exp.getExperience()));
             }
         }
 
