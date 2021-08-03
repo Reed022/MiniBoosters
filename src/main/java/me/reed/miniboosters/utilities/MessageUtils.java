@@ -21,7 +21,7 @@ public class MessageUtils {
     public static final String errorMsgUsageInfo = ChatColor.translateAlternateColorCodes('&', "&7(Usage: /booster info)");
     public static final String errorMsgUsageTesttools = ChatColor.translateAlternateColorCodes('&', "&7(Usage: /booster testtools <tool>) Tools: expalerts");
 
-    // Multiplier status message methods (taking in types, values, and whether or not to include default multiplier value in the message)
+    // Multiplier status message methods (taking in types, values, and whether to include default multiplier value in the message)
     public static String msgEnableMulti(String multiType, int defaultMultiValue, int multiValue, boolean useDefault) {
         if (useDefault) {
             return ChatColor.translateAlternateColorCodes('&', "&3" + multiType + " multiplier is now &aACTIVE &3at &bdefault " + defaultMultiValue + "x&3!");
@@ -53,7 +53,7 @@ public class MessageUtils {
     // General strings
     public static final String playerEnableExpAlerts = ChatColor.translateAlternateColorCodes('&', "&3Exp alerts are now &aACTIVE&3!");
     public static final String playerDisableExpAlerts = ChatColor.translateAlternateColorCodes('&', "&3Exp alerts are now &cINACTIVE&3!");
-    public static final String availableBoosters = ChatColor.translateAlternateColorCodes('&', "&3Available boosters: &bexp");
+    public static final String availableBoosters = ChatColor.translateAlternateColorCodes('&', "&3Available boosters: &bexp, mob_drops, animal_drops, boss_drops");
     public static final String consoleCommandErr = "You must be in-game to use this command!";
 
     // General string methods (these methods take in values and could change - above general strings will never change)

@@ -2,7 +2,6 @@ package me.reed.miniboosters.commands;
 
 import me.reed.miniboosters.MiniBoosters;
 import me.reed.miniboosters.utilities.MessageUtils;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -42,19 +41,57 @@ public class Booster implements CommandExecutor {
                                     // Checking type
                                     switch (args[1].toLowerCase()) {
                                         case "exp":
+                                            // Same for each case down, but applying to that specific multiplier. Here, the player is trying to turn the multiplier on at default value.
+                                            // Check if multiplier is already on at default value
                                             if (plugin.getExpMultiValue() == plugin.getDefaultMultiValue() && plugin.isExpMultiEnabled()) {
                                                 player.sendMessage(MessageUtils.msgMultiAlreadyActive("Exp", plugin.getDefaultMultiValue(), plugin.getExpMultiValue(), true));
-
-                                            } else if (plugin.getExpMultiValue() != plugin.getDefaultMultiValue() && plugin.isExpMultiEnabled()) {
+                                            } // Check if multiplier is already on, but at a value other than default. Then, set to default
+                                            else if (plugin.getExpMultiValue() != plugin.getDefaultMultiValue() && plugin.isExpMultiEnabled()) {
                                                 plugin.setExpMultiValue(plugin.getDefaultMultiValue());
                                                 player.sendMessage(MessageUtils.msgChangeMulti("Exp", plugin.getDefaultMultiValue(), plugin.getExpMultiValue(), true));
-                                            } else {
+                                            } // Else, multiplier is simply off, so turn it on at default
+                                            else {
                                                 plugin.setExpMultiEnabled(true);
                                                 plugin.setExpMultiValue(plugin.getDefaultMultiValue());
                                                 player.sendMessage(MessageUtils.msgEnableMulti("Exp", plugin.getDefaultMultiValue(), plugin.getExpMultiValue(), true));
                                             }
                                             break;
-                                        // future cases for future booster types
+                                        case "mob_drops":
+                                            if (plugin.getMobMultiValue() == plugin.getDefaultMultiValue() && plugin.isMobMultiEnabled()) {
+                                                player.sendMessage(MessageUtils.msgMultiAlreadyActive("Mob drop", plugin.getDefaultMultiValue(), plugin.getMobMultiValue(), true));
+                                            } else if (plugin.getMobMultiValue() != plugin.getDefaultMultiValue() && plugin.isMobMultiEnabled()) {
+                                                plugin.setMobMultiValue(plugin.getDefaultMultiValue());
+                                                player.sendMessage(MessageUtils.msgChangeMulti("Mob drop", plugin.getDefaultMultiValue(), plugin.getMobMultiValue(), true));
+                                            } else {
+                                                plugin.setMobMultiEnabled(true);
+                                                plugin.setMobMultiValue(plugin.getDefaultMultiValue());
+                                                player.sendMessage(MessageUtils.msgEnableMulti("Mob drop", plugin.getDefaultMultiValue(), plugin.getMobMultiValue(), true));
+                                            }
+                                            break;
+                                        case "animal_drops":
+                                            if (plugin.getAnimalMultiValue() == plugin.getDefaultMultiValue() && plugin.isAnimalMultiEnabled()) {
+                                                player.sendMessage(MessageUtils.msgMultiAlreadyActive("Animal drop", plugin.getDefaultMultiValue(), plugin.getAnimalMultiValue(), true));
+                                            } else if (plugin.getAnimalMultiValue() != plugin.getDefaultMultiValue() && plugin.isAnimalMultiEnabled()) {
+                                                plugin.setAnimalMultiValue(plugin.getDefaultMultiValue());
+                                                player.sendMessage(MessageUtils.msgChangeMulti("Animal drop", plugin.getDefaultMultiValue(), plugin.getAnimalMultiValue(), true));
+                                            } else {
+                                                plugin.setAnimalMultiEnabled(true);
+                                                plugin.setAnimalMultiValue(plugin.getDefaultMultiValue());
+                                                player.sendMessage(MessageUtils.msgEnableMulti("Animal drop", plugin.getDefaultMultiValue(), plugin.getAnimalMultiValue(), true));
+                                            }
+                                            break;
+                                        case "boss_drops":
+                                            if (plugin.getBossMultiValue() == plugin.getDefaultMultiValue() && plugin.isBossMultiEnabled()) {
+                                                player.sendMessage(MessageUtils.msgMultiAlreadyActive("Boss drop", plugin.getDefaultMultiValue(), plugin.getBossMultiValue(), true));
+                                            } else if (plugin.getBossMultiValue() != plugin.getDefaultMultiValue() && plugin.isBossMultiEnabled()) {
+                                                plugin.setBossMultiValue(plugin.getDefaultMultiValue());
+                                                player.sendMessage(MessageUtils.msgChangeMulti("Boss drop", plugin.getDefaultMultiValue(), plugin.getBossMultiValue(), true));
+                                            } else {
+                                                plugin.setBossMultiEnabled(true);
+                                                plugin.setBossMultiValue(plugin.getDefaultMultiValue());
+                                                player.sendMessage(MessageUtils.msgEnableMulti("Boss drop", plugin.getDefaultMultiValue(), plugin.getBossMultiValue(), true));
+                                            }
+                                            break;
                                         // when type is non-existent
                                         default:
                                             player.sendMessage(MessageUtils.errorMsgIncorrectArgs);
@@ -65,21 +102,66 @@ public class Booster implements CommandExecutor {
                                     // Checking type
                                     switch (args[1].toLowerCase()) {
                                         case "exp":
-                                            // tests if args[2] is parsable
+                                            // Same for each case down, but applying to that specific multiplier. Here, the player is trying to turn the multiplier on at a custom value.
+                                            // Check if args[2] is an integer
                                             if (isMultiValueInt(args[2], player)) {
+                                                // Check if multiplier is already on at the custom value given in args[2]
                                                 if (Integer.parseInt(args[2]) == plugin.getExpMultiValue() && plugin.isExpMultiEnabled()) {
                                                     player.sendMessage(MessageUtils.msgMultiAlreadyActive("Exp", plugin.getDefaultMultiValue(), plugin.getExpMultiValue(), false));
-                                                } else if (Integer.parseInt(args[2]) != plugin.getExpMultiValue() && plugin.isExpMultiEnabled()) {
+                                                } // Check if multiplier is already on at a value other than the one given in args[2]. Then, set to given value
+                                                else if (Integer.parseInt(args[2]) != plugin.getExpMultiValue() && plugin.isExpMultiEnabled()) {
                                                     plugin.setExpMultiValue(Integer.parseInt(args[2]));
                                                     player.sendMessage(MessageUtils.msgChangeMulti("Exp", plugin.getDefaultMultiValue(), plugin.getExpMultiValue(), false));
-                                                } else {
+                                                } // Else, multiplier is simply off, so turn it on at the custom value
+                                                else {
                                                     plugin.setExpMultiEnabled(true);
                                                     plugin.setExpMultiValue(Integer.parseInt(args[2]));
                                                     player.sendMessage(MessageUtils.msgEnableMulti("Exp", plugin.getDefaultMultiValue(), plugin.getExpMultiValue(), false));
                                                 }
                                             }
                                             break;
-                                        // future cases for future booster types
+                                        case "mob_drops":
+                                            if (isMultiValueInt(args[2], player)) {
+                                                if (Integer.parseInt(args[2]) == plugin.getMobMultiValue() && plugin.isMobMultiEnabled()) {
+                                                    player.sendMessage(MessageUtils.msgMultiAlreadyActive("Mob drop", plugin.getDefaultMultiValue(), plugin.getMobMultiValue(), false));
+                                                } else if (Integer.parseInt(args[2]) != plugin.getMobMultiValue() && plugin.isMobMultiEnabled()) {
+                                                    plugin.setMobMultiValue(Integer.parseInt(args[2]));
+                                                    player.sendMessage(MessageUtils.msgChangeMulti("Mob drop", plugin.getDefaultMultiValue(), plugin.getMobMultiValue(), false));
+                                                } else {
+                                                    plugin.setMobMultiEnabled(true);
+                                                    plugin.setMobMultiValue(Integer.parseInt(args[2]));
+                                                    player.sendMessage(MessageUtils.msgEnableMulti("Mob drop", plugin.getDefaultMultiValue(), plugin.getMobMultiValue(), false));
+                                                }
+                                            }
+                                            break;
+                                        case "animal_drops":
+                                            if (isMultiValueInt(args[2], player)) {
+                                                if (Integer.parseInt(args[2]) == plugin.getAnimalMultiValue() && plugin.isAnimalMultiEnabled()) {
+                                                    player.sendMessage(MessageUtils.msgMultiAlreadyActive("Animal drop", plugin.getDefaultMultiValue(), plugin.getAnimalMultiValue(), false));
+                                                } else if (Integer.parseInt(args[2]) != plugin.getAnimalMultiValue() && plugin.isAnimalMultiEnabled()) {
+                                                    plugin.setAnimalMultiValue(Integer.parseInt(args[2]));
+                                                    player.sendMessage(MessageUtils.msgChangeMulti("Animal drop", plugin.getDefaultMultiValue(), plugin.getAnimalMultiValue(), false));
+                                                } else {
+                                                    plugin.setAnimalMultiEnabled(true);
+                                                    plugin.setAnimalMultiValue(Integer.parseInt(args[2]));
+                                                    player.sendMessage(MessageUtils.msgEnableMulti("Animal drop", plugin.getDefaultMultiValue(), plugin.getAnimalMultiValue(), false));
+                                                }
+                                            }
+                                            break;
+                                        case "boss_drops":
+                                            if (isMultiValueInt(args[2], player)) {
+                                                if (Integer.parseInt(args[2]) == plugin.getBossMultiValue() && plugin.isBossMultiEnabled()) {
+                                                    player.sendMessage(MessageUtils.msgMultiAlreadyActive("Boss drop", plugin.getDefaultMultiValue(), plugin.getBossMultiValue(), false));
+                                                } else if (Integer.parseInt(args[2]) != plugin.getBossMultiValue() && plugin.isBossMultiEnabled()) {
+                                                    plugin.setBossMultiValue(Integer.parseInt(args[2]));
+                                                    player.sendMessage(MessageUtils.msgChangeMulti("Boss drop", plugin.getDefaultMultiValue(), plugin.getBossMultiValue(), false));
+                                                } else {
+                                                    plugin.setBossMultiEnabled(true);
+                                                    plugin.setBossMultiValue(Integer.parseInt(args[2]));
+                                                    player.sendMessage(MessageUtils.msgEnableMulti("Boss drop", plugin.getDefaultMultiValue(), plugin.getBossMultiValue(), false));
+                                                }
+                                            }
+                                            break;
                                         // when type is non-existent
                                         default:
                                             player.sendMessage(MessageUtils.errorMsgIncorrectArgs);
@@ -102,14 +184,40 @@ public class Booster implements CommandExecutor {
                                 case 2:
                                     switch (args[1].toLowerCase()) {
                                         case "exp":
+                                            // Same for each case down, but applying to that specific multiplier. Here, the player is trying to turn the multiplier off.
+                                            // Check if multiplier is already off
                                             if (!plugin.isExpMultiEnabled()) {
                                                 player.sendMessage(MessageUtils.msgMultiAlreadyInactive("Exp"));
-                                            } else {
+                                            } // Else, multiplier is on, so turn it off
+                                            else {
                                                 plugin.setExpMultiEnabled(false);
                                                 player.sendMessage(MessageUtils.msgDisableMulti("Exp"));
                                             }
                                             break;
-                                        // future cases for future booster types
+                                        case "mobs":
+                                            if (!plugin.isMobMultiEnabled()) {
+                                                player.sendMessage(MessageUtils.msgMultiAlreadyInactive("Mob drop"));
+                                            } else {
+                                                plugin.setMobMultiEnabled(false);
+                                                player.sendMessage(MessageUtils.msgDisableMulti("Mob drop"));
+                                            }
+                                            break;
+                                        case "animals":
+                                            if (!plugin.isAnimalMultiEnabled()) {
+                                                player.sendMessage(MessageUtils.msgMultiAlreadyInactive("Animal drop"));
+                                            } else {
+                                                plugin.setAnimalMultiEnabled(false);
+                                                player.sendMessage(MessageUtils.msgDisableMulti("Animal drop"));
+                                            }
+                                            break;
+                                        case "bosses":
+                                            if (!plugin.isBossMultiEnabled()) {
+                                                player.sendMessage(MessageUtils.msgMultiAlreadyInactive("Boss drop"));
+                                            } else {
+                                                plugin.setBossMultiEnabled(false);
+                                                player.sendMessage(MessageUtils.msgDisableMulti("Boss drop"));
+                                            }
+                                            break;
                                         // when type is non-existent
                                         default:
                                             player.sendMessage(MessageUtils.errorMsgIncorrectArgs);
@@ -137,7 +245,7 @@ public class Booster implements CommandExecutor {
                                 player.sendMessage(MessageUtils.errorMsgUsageInfo);
                             } else {
                                 player.sendMessage(MessageUtils.messageHeader("Active Boosters:"));
-                                player.sendMessage(ChatColor.AQUA + plugin.getActiveBoosters());
+                                player.sendMessage(plugin.getActiveBoosters());
                             }
                             break;
                         case "testtools":
