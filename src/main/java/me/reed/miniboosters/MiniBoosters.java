@@ -70,42 +70,42 @@ public final class MiniBoosters extends JavaPlugin {
         expMultiValue = v;
     }
 
-    public boolean isMobMultiEnabled() {
+    public boolean isMobDropMultiEnabled() {
         return mobMultiToggle;
     }
-    public void setMobMultiEnabled(Boolean toggled) {
+    public void setMobDropMultiEnabled(Boolean toggled) {
         mobMultiToggle = toggled;
     }
-    public int getMobMultiValue() {
+    public int getMobDropMultiValue() {
         return mobMultiValue;
     }
-    public void setMobMultiValue(int v) {
+    public void setMobDropMultiValue(int v) {
         mobMultiValue = v;
     }
 
-    public boolean isAnimalMultiEnabled() {
+    public boolean isAnimalDropMultiEnabled() {
         return animalMultiToggle;
     }
-    public void setAnimalMultiEnabled(Boolean toggled) {
+    public void setAnimalDropMultiEnabled(Boolean toggled) {
         animalMultiToggle = toggled;
     }
-    public int getAnimalMultiValue() {
+    public int getAnimalDropMultiValue() {
         return animalMultiValue;
     }
-    public void setAnimalMultiValue(int v) {
+    public void setAnimalDropMultiValue(int v) {
         animalMultiValue = v;
     }
 
-    public boolean isBossMultiEnabled() {
+    public boolean isBossDropMultiEnabled() {
         return bossMultiToggle;
     }
-    public void setBossMultiEnabled(Boolean toggled) {
+    public void setBossDropMultiEnabled(Boolean toggled) {
         bossMultiToggle = toggled;
     }
-    public int getBossMultiValue() {
+    public int getBossDropMultiValue() {
         return bossMultiValue;
     }
-    public void setBossMultiValue(int v) {
+    public void setBossDropMultiValue(int v) {
         bossMultiValue = v;
     }
 

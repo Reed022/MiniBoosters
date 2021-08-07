@@ -45,25 +45,25 @@ public class MobKill implements Listener {
                 k.sendMessage("[test] " + i.getType() + ": " + i.getAmount());
             }
             if (isEntityPassive(e.getType())) {
-                if (plugin.isAnimalMultiEnabled()) {
+                if (plugin.isAnimalDropMultiEnabled()) {
                     for (ItemStack i : entityDrops) {
-                        i.setAmount(i.getAmount() * plugin.getAnimalMultiValue());
+                        i.setAmount(i.getAmount() * plugin.getAnimalDropMultiValue());
                         k.sendMessage("[test] " + i.getType() + ": " + i.getAmount()); // ALSO TESTING
                     }
                     event.getDrops().addAll(entityDrops);
                 }
             } else if (isEntityHostile(e.getType())) {
-                if (plugin.isMobMultiEnabled()) {
+                if (plugin.isMobDropMultiEnabled()) {
                     for (ItemStack i : entityDrops) {
-                        i.setAmount(i.getAmount() * plugin.getMobMultiValue());
+                        i.setAmount(i.getAmount() * plugin.getMobDropMultiValue());
                         k.sendMessage("[test] " + i.getType() + ": " + i.getAmount()); // TESTING HERE TOO
                     }
                     event.getDrops().addAll(entityDrops);
                 }
             } else if (isEntityBoss(e.getType())) {
-                if (plugin.isBossMultiEnabled()) {
+                if (plugin.isBossDropMultiEnabled()) {
                     for (ItemStack i : entityDrops) {
-                        i.setAmount(i.getAmount() * plugin.getBossMultiValue());
+                        i.setAmount(i.getAmount() * plugin.getBossDropMultiValue());
                         k.sendMessage("[test] " + i.getType() + ": " + i.getAmount()); // MAYBE I'LL MAKE THIS A TEST TOOL LATER
                     }
                     event.getDrops().addAll(entityDrops);

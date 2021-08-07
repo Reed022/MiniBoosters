@@ -57,39 +57,39 @@ public class Booster implements CommandExecutor {
                                             }
                                             break;
                                         case "mob_drops":
-                                            if (plugin.getMobMultiValue() == plugin.getDefaultMultiValue() && plugin.isMobMultiEnabled()) {
-                                                player.sendMessage(MessageUtils.msgMultiAlreadyActive("Mob drop", plugin.getDefaultMultiValue(), plugin.getMobMultiValue(), true));
-                                            } else if (plugin.getMobMultiValue() != plugin.getDefaultMultiValue() && plugin.isMobMultiEnabled()) {
-                                                plugin.setMobMultiValue(plugin.getDefaultMultiValue());
-                                                player.sendMessage(MessageUtils.msgChangeMulti("Mob drop", plugin.getDefaultMultiValue(), plugin.getMobMultiValue(), true));
+                                            if (plugin.getMobDropMultiValue() == plugin.getDefaultMultiValue() && plugin.isMobDropMultiEnabled()) {
+                                                player.sendMessage(MessageUtils.msgMultiAlreadyActive("Mob drop", plugin.getDefaultMultiValue(), plugin.getMobDropMultiValue(), true));
+                                            } else if (plugin.getMobDropMultiValue() != plugin.getDefaultMultiValue() && plugin.isMobDropMultiEnabled()) {
+                                                plugin.setMobDropMultiValue(plugin.getDefaultMultiValue());
+                                                player.sendMessage(MessageUtils.msgChangeMulti("Mob drop", plugin.getDefaultMultiValue(), plugin.getMobDropMultiValue(), true));
                                             } else {
-                                                plugin.setMobMultiEnabled(true);
-                                                plugin.setMobMultiValue(plugin.getDefaultMultiValue());
-                                                player.sendMessage(MessageUtils.msgEnableMulti("Mob drop", plugin.getDefaultMultiValue(), plugin.getMobMultiValue(), true));
+                                                plugin.setMobDropMultiEnabled(true);
+                                                plugin.setMobDropMultiValue(plugin.getDefaultMultiValue());
+                                                player.sendMessage(MessageUtils.msgEnableMulti("Mob drop", plugin.getDefaultMultiValue(), plugin.getMobDropMultiValue(), true));
                                             }
                                             break;
                                         case "animal_drops":
-                                            if (plugin.getAnimalMultiValue() == plugin.getDefaultMultiValue() && plugin.isAnimalMultiEnabled()) {
-                                                player.sendMessage(MessageUtils.msgMultiAlreadyActive("Animal drop", plugin.getDefaultMultiValue(), plugin.getAnimalMultiValue(), true));
-                                            } else if (plugin.getAnimalMultiValue() != plugin.getDefaultMultiValue() && plugin.isAnimalMultiEnabled()) {
-                                                plugin.setAnimalMultiValue(plugin.getDefaultMultiValue());
-                                                player.sendMessage(MessageUtils.msgChangeMulti("Animal drop", plugin.getDefaultMultiValue(), plugin.getAnimalMultiValue(), true));
+                                            if (plugin.getAnimalDropMultiValue() == plugin.getDefaultMultiValue() && plugin.isAnimalDropMultiEnabled()) {
+                                                player.sendMessage(MessageUtils.msgMultiAlreadyActive("Animal drop", plugin.getDefaultMultiValue(), plugin.getAnimalDropMultiValue(), true));
+                                            } else if (plugin.getAnimalDropMultiValue() != plugin.getDefaultMultiValue() && plugin.isAnimalDropMultiEnabled()) {
+                                                plugin.setAnimalDropMultiValue(plugin.getDefaultMultiValue());
+                                                player.sendMessage(MessageUtils.msgChangeMulti("Animal drop", plugin.getDefaultMultiValue(), plugin.getAnimalDropMultiValue(), true));
                                             } else {
-                                                plugin.setAnimalMultiEnabled(true);
-                                                plugin.setAnimalMultiValue(plugin.getDefaultMultiValue());
-                                                player.sendMessage(MessageUtils.msgEnableMulti("Animal drop", plugin.getDefaultMultiValue(), plugin.getAnimalMultiValue(), true));
+                                                plugin.setAnimalDropMultiEnabled(true);
+                                                plugin.setAnimalDropMultiValue(plugin.getDefaultMultiValue());
+                                                player.sendMessage(MessageUtils.msgEnableMulti("Animal drop", plugin.getDefaultMultiValue(), plugin.getAnimalDropMultiValue(), true));
                                             }
                                             break;
                                         case "boss_drops":
-                                            if (plugin.getBossMultiValue() == plugin.getDefaultMultiValue() && plugin.isBossMultiEnabled()) {
-                                                player.sendMessage(MessageUtils.msgMultiAlreadyActive("Boss drop", plugin.getDefaultMultiValue(), plugin.getBossMultiValue(), true));
-                                            } else if (plugin.getBossMultiValue() != plugin.getDefaultMultiValue() && plugin.isBossMultiEnabled()) {
-                                                plugin.setBossMultiValue(plugin.getDefaultMultiValue());
-                                                player.sendMessage(MessageUtils.msgChangeMulti("Boss drop", plugin.getDefaultMultiValue(), plugin.getBossMultiValue(), true));
+                                            if (plugin.getBossDropMultiValue() == plugin.getDefaultMultiValue() && plugin.isBossDropMultiEnabled()) {
+                                                player.sendMessage(MessageUtils.msgMultiAlreadyActive("Boss drop", plugin.getDefaultMultiValue(), plugin.getBossDropMultiValue(), true));
+                                            } else if (plugin.getBossDropMultiValue() != plugin.getDefaultMultiValue() && plugin.isBossDropMultiEnabled()) {
+                                                plugin.setBossDropMultiValue(plugin.getDefaultMultiValue());
+                                                player.sendMessage(MessageUtils.msgChangeMulti("Boss drop", plugin.getDefaultMultiValue(), plugin.getBossDropMultiValue(), true));
                                             } else {
-                                                plugin.setBossMultiEnabled(true);
-                                                plugin.setBossMultiValue(plugin.getDefaultMultiValue());
-                                                player.sendMessage(MessageUtils.msgEnableMulti("Boss drop", plugin.getDefaultMultiValue(), plugin.getBossMultiValue(), true));
+                                                plugin.setBossDropMultiEnabled(true);
+                                                plugin.setBossDropMultiValue(plugin.getDefaultMultiValue());
+                                                player.sendMessage(MessageUtils.msgEnableMulti("Boss drop", plugin.getDefaultMultiValue(), plugin.getBossDropMultiValue(), true));
                                             }
                                             break;
                                         // when type is non-existent
@@ -122,43 +122,43 @@ public class Booster implements CommandExecutor {
                                             break;
                                         case "mob_drops":
                                             if (isMultiValueInt(args[2], player)) {
-                                                if (Integer.parseInt(args[2]) == plugin.getMobMultiValue() && plugin.isMobMultiEnabled()) {
-                                                    player.sendMessage(MessageUtils.msgMultiAlreadyActive("Mob drop", plugin.getDefaultMultiValue(), plugin.getMobMultiValue(), false));
-                                                } else if (Integer.parseInt(args[2]) != plugin.getMobMultiValue() && plugin.isMobMultiEnabled()) {
-                                                    plugin.setMobMultiValue(Integer.parseInt(args[2]));
-                                                    player.sendMessage(MessageUtils.msgChangeMulti("Mob drop", plugin.getDefaultMultiValue(), plugin.getMobMultiValue(), false));
+                                                if (Integer.parseInt(args[2]) == plugin.getMobDropMultiValue() && plugin.isMobDropMultiEnabled()) {
+                                                    player.sendMessage(MessageUtils.msgMultiAlreadyActive("Mob drop", plugin.getDefaultMultiValue(), plugin.getMobDropMultiValue(), false));
+                                                } else if (Integer.parseInt(args[2]) != plugin.getMobDropMultiValue() && plugin.isMobDropMultiEnabled()) {
+                                                    plugin.setMobDropMultiValue(Integer.parseInt(args[2]));
+                                                    player.sendMessage(MessageUtils.msgChangeMulti("Mob drop", plugin.getDefaultMultiValue(), plugin.getMobDropMultiValue(), false));
                                                 } else {
-                                                    plugin.setMobMultiEnabled(true);
-                                                    plugin.setMobMultiValue(Integer.parseInt(args[2]));
-                                                    player.sendMessage(MessageUtils.msgEnableMulti("Mob drop", plugin.getDefaultMultiValue(), plugin.getMobMultiValue(), false));
+                                                    plugin.setMobDropMultiEnabled(true);
+                                                    plugin.setMobDropMultiValue(Integer.parseInt(args[2]));
+                                                    player.sendMessage(MessageUtils.msgEnableMulti("Mob drop", plugin.getDefaultMultiValue(), plugin.getMobDropMultiValue(), false));
                                                 }
                                             }
                                             break;
                                         case "animal_drops":
                                             if (isMultiValueInt(args[2], player)) {
-                                                if (Integer.parseInt(args[2]) == plugin.getAnimalMultiValue() && plugin.isAnimalMultiEnabled()) {
-                                                    player.sendMessage(MessageUtils.msgMultiAlreadyActive("Animal drop", plugin.getDefaultMultiValue(), plugin.getAnimalMultiValue(), false));
-                                                } else if (Integer.parseInt(args[2]) != plugin.getAnimalMultiValue() && plugin.isAnimalMultiEnabled()) {
-                                                    plugin.setAnimalMultiValue(Integer.parseInt(args[2]));
-                                                    player.sendMessage(MessageUtils.msgChangeMulti("Animal drop", plugin.getDefaultMultiValue(), plugin.getAnimalMultiValue(), false));
+                                                if (Integer.parseInt(args[2]) == plugin.getAnimalDropMultiValue() && plugin.isAnimalDropMultiEnabled()) {
+                                                    player.sendMessage(MessageUtils.msgMultiAlreadyActive("Animal drop", plugin.getDefaultMultiValue(), plugin.getAnimalDropMultiValue(), false));
+                                                } else if (Integer.parseInt(args[2]) != plugin.getAnimalDropMultiValue() && plugin.isAnimalDropMultiEnabled()) {
+                                                    plugin.setAnimalDropMultiValue(Integer.parseInt(args[2]));
+                                                    player.sendMessage(MessageUtils.msgChangeMulti("Animal drop", plugin.getDefaultMultiValue(), plugin.getAnimalDropMultiValue(), false));
                                                 } else {
-                                                    plugin.setAnimalMultiEnabled(true);
-                                                    plugin.setAnimalMultiValue(Integer.parseInt(args[2]));
-                                                    player.sendMessage(MessageUtils.msgEnableMulti("Animal drop", plugin.getDefaultMultiValue(), plugin.getAnimalMultiValue(), false));
+                                                    plugin.setAnimalDropMultiEnabled(true);
+                                                    plugin.setAnimalDropMultiValue(Integer.parseInt(args[2]));
+                                                    player.sendMessage(MessageUtils.msgEnableMulti("Animal drop", plugin.getDefaultMultiValue(), plugin.getAnimalDropMultiValue(), false));
                                                 }
                                             }
                                             break;
                                         case "boss_drops":
                                             if (isMultiValueInt(args[2], player)) {
-                                                if (Integer.parseInt(args[2]) == plugin.getBossMultiValue() && plugin.isBossMultiEnabled()) {
-                                                    player.sendMessage(MessageUtils.msgMultiAlreadyActive("Boss drop", plugin.getDefaultMultiValue(), plugin.getBossMultiValue(), false));
-                                                } else if (Integer.parseInt(args[2]) != plugin.getBossMultiValue() && plugin.isBossMultiEnabled()) {
-                                                    plugin.setBossMultiValue(Integer.parseInt(args[2]));
-                                                    player.sendMessage(MessageUtils.msgChangeMulti("Boss drop", plugin.getDefaultMultiValue(), plugin.getBossMultiValue(), false));
+                                                if (Integer.parseInt(args[2]) == plugin.getBossDropMultiValue() && plugin.isBossDropMultiEnabled()) {
+                                                    player.sendMessage(MessageUtils.msgMultiAlreadyActive("Boss drop", plugin.getDefaultMultiValue(), plugin.getBossDropMultiValue(), false));
+                                                } else if (Integer.parseInt(args[2]) != plugin.getBossDropMultiValue() && plugin.isBossDropMultiEnabled()) {
+                                                    plugin.setBossDropMultiValue(Integer.parseInt(args[2]));
+                                                    player.sendMessage(MessageUtils.msgChangeMulti("Boss drop", plugin.getDefaultMultiValue(), plugin.getBossDropMultiValue(), false));
                                                 } else {
-                                                    plugin.setBossMultiEnabled(true);
-                                                    plugin.setBossMultiValue(Integer.parseInt(args[2]));
-                                                    player.sendMessage(MessageUtils.msgEnableMulti("Boss drop", plugin.getDefaultMultiValue(), plugin.getBossMultiValue(), false));
+                                                    plugin.setBossDropMultiEnabled(true);
+                                                    plugin.setBossDropMultiValue(Integer.parseInt(args[2]));
+                                                    player.sendMessage(MessageUtils.msgEnableMulti("Boss drop", plugin.getDefaultMultiValue(), plugin.getBossDropMultiValue(), false));
                                                 }
                                             }
                                             break;
@@ -194,27 +194,27 @@ public class Booster implements CommandExecutor {
                                                 player.sendMessage(MessageUtils.msgDisableMulti("Exp"));
                                             }
                                             break;
-                                        case "mobs":
-                                            if (!plugin.isMobMultiEnabled()) {
+                                        case "mob_drops":
+                                            if (!plugin.isMobDropMultiEnabled()) {
                                                 player.sendMessage(MessageUtils.msgMultiAlreadyInactive("Mob drop"));
                                             } else {
-                                                plugin.setMobMultiEnabled(false);
+                                                plugin.setMobDropMultiEnabled(false);
                                                 player.sendMessage(MessageUtils.msgDisableMulti("Mob drop"));
                                             }
                                             break;
-                                        case "animals":
-                                            if (!plugin.isAnimalMultiEnabled()) {
+                                        case "animal_drops":
+                                            if (!plugin.isAnimalDropMultiEnabled()) {
                                                 player.sendMessage(MessageUtils.msgMultiAlreadyInactive("Animal drop"));
                                             } else {
-                                                plugin.setAnimalMultiEnabled(false);
+                                                plugin.setAnimalDropMultiEnabled(false);
                                                 player.sendMessage(MessageUtils.msgDisableMulti("Animal drop"));
                                             }
                                             break;
-                                        case "bosses":
-                                            if (!plugin.isBossMultiEnabled()) {
+                                        case "boss_drops":
+                                            if (!plugin.isBossDropMultiEnabled()) {
                                                 player.sendMessage(MessageUtils.msgMultiAlreadyInactive("Boss drop"));
                                             } else {
-                                                plugin.setBossMultiEnabled(false);
+                                                plugin.setBossDropMultiEnabled(false);
                                                 player.sendMessage(MessageUtils.msgDisableMulti("Boss drop"));
                                             }
                                             break;
