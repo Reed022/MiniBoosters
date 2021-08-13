@@ -255,17 +255,28 @@ public class Booster implements CommandExecutor {
                                     player.sendMessage(MessageUtils.errorMsgUsageTesttools);
                                     break;
                                 case 2:
-                                    if (args[1].equals("expalerts")) {
-                                        if (plugin.playerExpAlertEnabled(player.getUniqueId())) {
-                                            plugin.setPlayerExpAlertEnabled(player.getUniqueId(), false);
-                                            player.sendMessage(MessageUtils.playerDisableExpAlerts);
-                                        } else {
-                                            plugin.setPlayerExpAlertEnabled(player.getUniqueId(), true);
-                                            player.sendMessage(MessageUtils.playerEnableExpAlerts);
-                                        }
-                                    } else {
-                                        player.sendMessage(MessageUtils.errorMsgIncorrectArgs);
-                                        player.sendMessage(MessageUtils.errorMsgUsageTesttools);
+                                    switch (args[1]) {
+                                        case "exp_alerts":
+                                            if (plugin.playerExpAlertEnabled(player.getUniqueId())) {
+                                                plugin.setPlayerExpAlertEnabled(player.getUniqueId(), false);
+                                                player.sendMessage(MessageUtils.playerDisableExpAlerts);
+                                            } else {
+                                                plugin.setPlayerExpAlertEnabled(player.getUniqueId(), true);
+                                                player.sendMessage(MessageUtils.playerEnableExpAlerts);
+                                            }
+                                            break;
+                                        case "entity_drop_alerts":
+                                            if (plugin.playerEntityDropAlertEnabled(player.getUniqueId())) {
+                                                plugin.setPlayerEntityDropAlertEnabled(player.getUniqueId(), false);
+                                                player.sendMessage(MessageUtils.playerDisableEntityDropAlerts);
+                                            } else {
+                                                plugin.setPlayerEntityDropAlertEnabled(player.getUniqueId(), true);
+                                                player.sendMessage(MessageUtils.playerEnableEntityDropAlerts);
+                                            }
+                                            break;
+                                        default:
+                                            player.sendMessage(MessageUtils.errorMsgIncorrectArgs);
+                                            player.sendMessage(MessageUtils.errorMsgUsageTesttools);
                                     }
                                     break;
                                 default:

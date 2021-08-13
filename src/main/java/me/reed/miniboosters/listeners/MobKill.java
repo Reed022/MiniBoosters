@@ -1,6 +1,7 @@
 package me.reed.miniboosters.listeners;
 
 import me.reed.miniboosters.MiniBoosters;
+import me.reed.miniboosters.utilities.MessageUtils;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
@@ -40,33 +41,53 @@ public class MobKill implements Listener {
         Entity k = event.getEntity().getKiller();
         if (k != null) {
             final List<ItemStack> entityDrops = event.getDrops();
-            // TEMPORARY TESTING
-            for (ItemStack i : entityDrops) {
-                k.sendMessage("[test] " + i.getType() + ": " + i.getAmount());
-            }
             if (isEntityPassive(e.getType())) {
                 if (plugin.isAnimalDropMultiEnabled()) {
                     for (ItemStack i : entityDrops) {
                         i.setAmount(i.getAmount() * plugin.getAnimalDropMultiValue());
-                        k.sendMessage("[test] " + i.getType() + ": " + i.getAmount()); // ALSO TESTING
+                        if (plugin.playerEntityDropAlertEnabled(k.getUniqueId())) {
+                            k.sendMessage(MessageUtils.entityDropAlertMsg(i.getAmount() / plugin.getAnimalDropMultiValue(), i.getAmount(), i.getType()));
+                        }
                     }
                     event.getDrops().addAll(entityDrops);
+                } else {
+                    for (ItemStack i : entityDrops) {
+                        if (plugin.playerEntityDropAlertEnabled(k.getUniqueId())) {
+                            k.sendMessage(MessageUtils.entityDropAlertMsg(i.getAmount(), i.getAmount(), i.getType()));
+                        }
+                    }
                 }
             } else if (isEntityHostile(e.getType())) {
                 if (plugin.isMobDropMultiEnabled()) {
                     for (ItemStack i : entityDrops) {
                         i.setAmount(i.getAmount() * plugin.getMobDropMultiValue());
-                        k.sendMessage("[test] " + i.getType() + ": " + i.getAmount()); // TESTING HERE TOO
+                        if (plugin.playerEntityDropAlertEnabled(k.getUniqueId())) {
+                            k.sendMessage(MessageUtils.entityDropAlertMsg(i.getAmount() / plugin.getMobDropMultiValue(), i.getAmount(), i.getType()));
+                        }
                     }
                     event.getDrops().addAll(entityDrops);
+                } else {
+                    for (ItemStack i : entityDrops) {
+                        if (plugin.playerEntityDropAlertEnabled(k.getUniqueId())) {
+                            k.sendMessage(MessageUtils.entityDropAlertMsg(i.getAmount(), i.getAmount(), i.getType()));
+                        }
+                    }
                 }
             } else if (isEntityBoss(e.getType())) {
                 if (plugin.isBossDropMultiEnabled()) {
                     for (ItemStack i : entityDrops) {
                         i.setAmount(i.getAmount() * plugin.getBossDropMultiValue());
-                        k.sendMessage("[test] " + i.getType() + ": " + i.getAmount()); // MAYBE I'LL MAKE THIS A TEST TOOL LATER
+                        if (plugin.playerEntityDropAlertEnabled(k.getUniqueId())) {
+                            k.sendMessage(MessageUtils.entityDropAlertMsg(i.getAmount() / plugin.getBossDropMultiValue(), i.getAmount(), i.getType()));
+                        }
                     }
                     event.getDrops().addAll(entityDrops);
+                } else {
+                    for (ItemStack i : entityDrops) {
+                        if (plugin.playerEntityDropAlertEnabled(k.getUniqueId())) {
+                            k.sendMessage(MessageUtils.entityDropAlertMsg(i.getAmount(), i.getAmount(), i.getType()));
+                        }
+                    }
                 }
             }
         }

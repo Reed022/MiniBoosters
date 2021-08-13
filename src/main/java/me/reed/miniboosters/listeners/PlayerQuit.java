@@ -19,5 +19,6 @@ public class PlayerQuit implements Listener {
         // Cleanup system for hashmap toggles
         Player player = event.getPlayer();
         plugin.removePlayerExpAlertEntry(player.getUniqueId());
+        plugin.removePlayerEntityDropAlertEntry(player.getUniqueId());
     }
 }

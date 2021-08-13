@@ -13,7 +13,8 @@ import java.util.UUID;
 
 public final class MiniBoosters extends JavaPlugin {
 
-    private Map<UUID, Boolean> toggles = new HashMap<>();
+    private final Map<UUID, Boolean> expAlertsPlayerToggles = new HashMap<>();
+    private final Map<UUID, Boolean> entityDropAlertsPlayerToggles = new HashMap<>();
     private final int defaultMultiValue = 2;
     private boolean expMultiToggle;
     private int expMultiValue;
@@ -41,15 +42,24 @@ public final class MiniBoosters extends JavaPlugin {
 
     // For exp alert
     public boolean playerExpAlertEnabled(UUID uuid) {
-        return toggles.getOrDefault(uuid, false);
+        return expAlertsPlayerToggles.getOrDefault(uuid, false);
     }
-
     public void setPlayerExpAlertEnabled(UUID uuid, Boolean toggled) {
-        toggles.put(uuid, toggled);
+        expAlertsPlayerToggles.put(uuid, toggled);
+    }
+    public void removePlayerExpAlertEntry(UUID uuid) {
+        expAlertsPlayerToggles.remove(uuid);
     }
 
-    public void removePlayerExpAlertEntry(UUID uuid) {
-        toggles.remove(uuid);
+    // For entity drop alert
+    public boolean playerEntityDropAlertEnabled(UUID uuid) {
+        return entityDropAlertsPlayerToggles.getOrDefault(uuid, false);
+    }
+    public void setPlayerEntityDropAlertEnabled(UUID uuid, Boolean toggled) {
+        entityDropAlertsPlayerToggles.put(uuid, toggled);
+    }
+    public void removePlayerEntityDropAlertEntry(UUID uuid) {
+        entityDropAlertsPlayerToggles.remove(uuid);
     }
 
     // Booster states

@@ -1,6 +1,7 @@
 package me.reed.miniboosters.utilities;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 
 public class MessageUtils {
     /*
@@ -19,7 +20,7 @@ public class MessageUtils {
     public static final String errorMsgUsageRemove2 = ChatColor.translateAlternateColorCodes('&', "&7(Usage: /booster remove <type>)");
     public static final String errorMsgUsageList = ChatColor.translateAlternateColorCodes('&', "&7(Usage: /booster list)");
     public static final String errorMsgUsageInfo = ChatColor.translateAlternateColorCodes('&', "&7(Usage: /booster info)");
-    public static final String errorMsgUsageTesttools = ChatColor.translateAlternateColorCodes('&', "&7(Usage: /booster testtools <tool>) Tools: expalerts");
+    public static final String errorMsgUsageTesttools = ChatColor.translateAlternateColorCodes('&', "&7(Usage: /booster testtools <tool>) Tools: exp_alerts, entity_drop_alerts");
 
     // Multiplier status message methods (taking in types, values, and whether to include default multiplier value in the message)
     public static String msgEnableMulti(String multiType, int defaultMultiValue, int multiValue, boolean useDefault) {
@@ -53,12 +54,17 @@ public class MessageUtils {
     // General strings
     public static final String playerEnableExpAlerts = ChatColor.translateAlternateColorCodes('&', "&3Exp alerts are now &aACTIVE&3!");
     public static final String playerDisableExpAlerts = ChatColor.translateAlternateColorCodes('&', "&3Exp alerts are now &cINACTIVE&3!");
+    public static final String playerEnableEntityDropAlerts = ChatColor.translateAlternateColorCodes('&', "&3Entity drop alerts are now &aACTIVE&3!");
+    public static final String playerDisableEntityDropAlerts = ChatColor.translateAlternateColorCodes('&', "&3Entity drop alerts are now &cINACTIVE&3!");
     public static final String availableBoosters = ChatColor.translateAlternateColorCodes('&', "&3Available boosters: &bexp, mob_drops, animal_drops, boss_drops");
     public static final String consoleCommandErr = "You must be in-game to use this command!";
 
     // General string methods (these methods take in values and could change - above general strings will never change)
     public static String expAlertMsg(int experienceValue) {
         return ChatColor.translateAlternateColorCodes('&', "&bExperience of target orb: &a" + experienceValue);
+    }
+    public static String entityDropAlertMsg(int originalDropValue, int newDropValue, Material item) {
+        return ChatColor.translateAlternateColorCodes('&', "&bOriginal Drop: &a" + item + " &2(&a" + originalDropValue + "&2) &bNew Drop: &a" + item + " &2(&a" + newDropValue + "&2)");
     }
     public static String playerMissingPermissionErr(String permissionName) {
         return ChatColor.translateAlternateColorCodes('&', "&cYou don't have permission to use this command! &4(missing permission &n" + permissionName + "&r&4)");
