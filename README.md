@@ -1,16 +1,14 @@
 # MiniBoosters
-MiniBoosters is a simple plugin to set multipliers, or "boosters", for things in your server, such as experience!
+MiniBoosters is a simple plugin to set multipliers, or "boosters", for things in your server, such as experience, mob drops, and more!
 
-### Features So Far:
-- Physical features:
-  - Experience multiplier:
-    When activated through the main command, the experience multiplier does just that: multiplies experience picked up from the ground based on the provided multiplier value.
-- Commands:
-  - /booster:
-    The plugin's main command to set multipliers for various game functionalities (currently only exp) as well as listing current boosters and listing all available boosters.
-  - /exptracker:
-    Toggles the experience tracker which displays in chat the value of an experience orb when it targets you.
+### Features:
+  - Experience multiplier: Multiplies experience when enabled.
+  - Entity drop multiplier: Multiplies the drops of entities on death. Supports mobs, animals, and bosses.
+  - Commands:
+    - /booster: The plugin's core command used to activate, deactivate, and check status on server boosters.
 
-### Planned Features:
-- Arguments for the /doubleexp command to change how much the experience is multiplied by (with limits).
-- Add functionality for specifying what should be boosted (i.e. ores, mob drops, etc.)
+###Version 1.1.1
+  - Added entity drop multipliers (supporting animals, mobs, and bosses).
+  - Removed the old /expalerts command and added testtools in its place.
+  - Added message utility system to centralize messages.
+  - Consistency and cleanup changes.

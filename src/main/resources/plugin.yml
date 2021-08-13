@@ -6,8 +6,5 @@ authors: [ Reed22 ]
 description: ${project.description}
 commands:
   booster:
-    description: Activates or deactivates double exp!
-    usage: /<command>
-  expalert:
-    description: Activates or deactivates the exp pickup tracker!
+    description: The plugin's core command used to activate, deactivate, and check status on server boosters.
     usage: /<command>

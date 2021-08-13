@@ -6,12 +6,12 @@
 
     <groupId>me.reed</groupId>
     <artifactId>miniboosters</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>MiniBoosters</name>
 
-    <description>MiniBoosters is a simple plugin to set multipliers, or "boosters", for things in your server, such as experience!</description>
+    <description>MiniBoosters is a simple plugin to set multipliers, or "boosters", for things in your server, such as experience, mob drops, and more!</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
